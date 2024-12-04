@@ -3,22 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/test-auth', function () {
-    $email = 'youssef@youssef';
-    $password = 'ssss'; // Plain text version of your password
-
-    if (Auth::attempt(['email' => $email, 'password' => $password])) {
-        return 'Login successful!';
-    } else {
-        return 'Login failed!';
-    }
-});
-
-
-
-Route::get('/auth', function () {
-    return view('Auth');
-});
+Route::get('/auth', function () {return view('Auth');});
 
 Route::post('/auth',[App\Http\Controllers\UtilisateurController::class, 'auth'])->name("Auth");
 

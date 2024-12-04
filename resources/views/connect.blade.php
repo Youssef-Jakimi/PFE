@@ -17,11 +17,11 @@
                         <input type="text" name="CIN" placeholder="CIN" class="in-up-form" required><br><br>
                         <input type="password" name="password" placeholder="Password" class="in-up-form" required> <br>
                         <input  type="submit" value="Connecter" class="loginB">
-
+                        
          
                  </form>
-            </div>
-
+        </div>
+        
         
     </div>
 </body>

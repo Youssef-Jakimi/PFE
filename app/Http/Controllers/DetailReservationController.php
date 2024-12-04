@@ -76,38 +76,37 @@ class DetailReservationController extends Controller
     public function FaireReservation(Request $request)
     {
         
-            // Valider les données
-            $request->validate([
-                'produit' => 'required',
-                'id_reserv' => 'required',
-                'prix' => 'required|numeric',
-                'DD' => 'required|date',
-                'DF' => 'required|date|after_or_equal:DD',
-            ]);
-        
-            // Enregistrer les données
-            detail_reservation::create([
-                'reservation_id' => $request->id_reserv,
-                'produit_id' => $request->produit,
-                'Prix_Total' => $request->prix,
-                'Date_D' => $request->DD,
-                'Date_F' => $request->DF,
-            ]);
+            
+    
+            $panier = new panier();
+            $panier->reservation_id=$request->input("id_reserv");
+            $panier->produit_id=$request->input("produit");
+            $panier->Prix_Total= $request->input("prix");
+            $panier->Date_D= $request->input("DD");
+            $panier->Date_F=$request->input("DF");
+            $panier->save();
         
             // Rediriger vers la page précédente avec les données mises à jour
         
         
             return redirect("/Table");
     }
-
+  
     public function table()
     {
-        $detail_reservation = DB::table('detail_reservations')->get();
+        $panier = DB::table('paniers')
+        ->join('produits', 'paniers.produit_id', '=', 'produits.id')
+        ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
+        ->select('paniers.id', 'paniers.reservation_id', 'categories.nom', 'paniers.produit_id', 'Prix_Total', 'Date_D', 'Date_F')
+        ->get();
+        $chambre = $panier->where('nom', '=', 'Chambre');
+        $table = $panier->where('nom', '=', 'Table');
         $produit = DB::table('produits')->get();
-        $reservation= DB::table('paniers')->value('reservation_id');
+        //$reservation= DB::table('paniers')->value('reservation_id');
 
  
-        return view("tabledetails")->with(['details' => $detail_reservation])->with(['produits' => $produit])->with('reservation',$reservation);
+        
+        return view("tabledetails")->with(['chambres' => $chambre])->with(['tables' => $table])->with(['produits' => $produit]);
     }
     public function updatedetail($id){
         $detail = detail_reservation::find($id);
