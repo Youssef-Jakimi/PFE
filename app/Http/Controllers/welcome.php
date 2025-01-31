@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\facture;
 use Illuminate\Http\Request;
 
-class FactureController extends Controller
+class welcome extends Controller
 {
-
+    //
 }

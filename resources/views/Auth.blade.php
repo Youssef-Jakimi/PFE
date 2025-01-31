@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <script src="{{ asset('js/script.js') }}"></script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
-<body>
-    
-
-        <div class="in-up">
-            <div class="login">
-                <h1 style="color: white"><pre>   S'inscrire :  </pre></h1>
-                <form class="main-form" action={{ route('Auth') }} method="post">
-                            @csrf<br>
-                            <input type="text" name="nom" placeholder="Nom" class="in-up-form" required><br><br>
-                            <input type="email" name="email" placeholder="Email" class="in-up-form" required><br><br>
-                            <input type="text" name="CIN" placeholder="CIN" class="in-up-form" required><br><br>
-                            <input type="text" name="telephone" placeholder="Telephone" class="in-up-form" required><br><br>
-                            <input type="password" id="password" name="password" placeholder="Mot de passe" class="in-up-form" required><br><br>
-                            <input type="password" id="Rpassword" name="Rpassword" placeholder="Re-enter Mot de passe" class="in-up-form" required> <br>
-                            <span id="password_err" style="color: red; display:none">Mots de passe ne sont pas identique </span>
-                            <button  type="submit" id="submitB" disabled  class="loginB">S'enregitrer</button>
-
-        
-                 </form>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="auth-box bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">S'inscrire</h1>
+        <form class="auth-form" action="{{ route('Auth') }}" method="post">
+            @csrf
+            <div class="form-group mb-4">
+                <input type="text" name="nom" placeholder="Nom" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
             </div>
-        </div>
+            <div class="form-group mb-4">
+                <input type="email" name="email" placeholder="Email" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            </div>
+            <div class="form-group mb-4">
+                <input type="text" name="CIN" placeholder="CIN" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            </div>
+            <div class="form-group mb-4">
+                <input type="text" name="telephone" placeholder="Téléphone" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            </div>
+            <div class="form-group mb-4">
+                <input type="password" id="password" name="password" placeholder="Mot de passe" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            </div>
+            <div class="form-group mb-6">
+                <input type="password" id="Rpassword" name="Rpassword" placeholder="Confirmer le mot de passe" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                <span id="password_err" class="error-message text-red-500 text-sm mt-1 hidden">Les mots de passe ne correspondent pas.</span>
+            </div>
+            <button type="submit" id="submitB" class="btn-auth w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300" disabled>S'enregistrer</button>
+        </form>
+    </div>
 </body>
 </html>
