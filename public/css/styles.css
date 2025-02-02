@@ -1,4 +1,7 @@
-/* Styles généraux pour le body */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -7,7 +10,6 @@ body {
     color: #333;
 }
 
-/* Styles pour l'en-tête (header) */
 header {
     background: #2c3e50;
     color: white;
@@ -16,7 +18,6 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles pour la navigation (nav) */
 nav ul {
     list-style: none;
     padding: 0;
@@ -40,7 +41,6 @@ nav ul li a:hover {
     color: #e67e22;
 }
 
-/* Styles pour la section Hero */
 .hero {
     text-align: center;
     padding: 150px 20px;
@@ -78,7 +78,6 @@ nav ul li a:hover {
     animation: fadeIn 3s ease-in-out;
 }
 
-/* Styles pour les boutons */
 .btn {
     background: #e67e22;
     color: white;
@@ -93,7 +92,6 @@ nav ul li a:hover {
     background: #d35400;
 }
 
-/* Styles pour la section À propos */
 .about {
     padding: 80px 20px;
     text-align: center;
@@ -112,7 +110,6 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-/* Styles pour la section Services */
 .services {
     padding: 80px 20px;
     text-align: center;
@@ -160,7 +157,6 @@ nav ul li a:hover {
     color: #666;
 }
 
-/* Styles pour le pied de page (footer) */
 footer {
     background: #2c3e50;
     color: white;
@@ -188,7 +184,6 @@ footer p {
     color: #e67e22;
 }
 
-/* Animation fadeIn */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -198,7 +193,6 @@ footer p {
     }
 }
 
-/* Styles pour les liens avec effet slidein */
 .slidein a {
     overflow: hidden;
     padding: 0 4px;
@@ -232,32 +226,175 @@ footer p {
     transform: translateY(-100%);
 }
 
-/* Styles pour les formulaires (login et auth) */
-.auth-container, .login-container {
+.main-form {
+    width: 70%;
+    background-color: #253135;
+    border-radius: 10px;
+    padding: 30px;
+    padding-bottom: 100px;
+    color: #fff;
+    line-height: 23px;
+    width: fit-content;
+    min-width: 70%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #194751;
+    width: 50%;
+    height: fit-content;
+    max-height: 80vh;
+    border-radius: 30px;
+    padding-bottom: 100px;
+}
+
+.in-up-form {
+    width: 80%;
+    max-width: 350px;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 10px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table {
+    margin: auto;
+    padding-top: 30px;
+    border-radius: 20px;
+}
+
+th {
+    color: #D5DDE5;
+    background: #1b1e24;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    font-size: 23px;
+    font-weight: 100;
+    padding: 24px;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+}
+
+th:first-child {
+    border-top-left-radius: 3px;
+}
+
+th:last-child {
+    border-top-right-radius: 3px;
+    border-right: none;
+}
+
+tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom: 1px solid #C1C3D1;
+    color: #666B85;
+    font-size: 16px;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+    background: #4E5066;
+    color: #FFFFFF;
+    border-top: 1px solid #22262e;
+}
+
+tr:first-child {
+    border-top: none;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+tr:nth-child(odd) td {
+    background: #EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+    background: #4E5066;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 3px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 3px;
+}
+
+td {
+    background: #FFFFFF;
+    padding: 20px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+    border-right: 0px;
+}
+
+th.text-left {
+    text-align: left;
+}
+
+th.text-center {
+    text-align: center;
+}
+
+th.text-right {
+    text-align: right;
+}
+
+td.text-left {
+    text-align: left;
+}
+
+td.text-center {
+    text-align: center;
+}
+
+td.text-right {
+    text-align: right;
+}
+
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #389baf; /* Couleur de fond similaire au body */
+    background-color: #389baf;
 }
 
-.auth-box, .login-box {
-    background-color: #ffffff; /* Fond blanc pour contraster avec le fond */
+.auth-box {
+    background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre portée pour un effet de profondeur */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 100%;
     max-width: 400px;
 }
 
-.auth-box h1, .login-box h1 {
-    color: #2c3e50; /* Couleur de texte sombre pour le titre */
+.auth-box h1 {
+    color: #2c3e50;
     margin-bottom: 20px;
     font-size: 2em;
 }
 
-.auth-form, .login-form {
+.auth-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -274,20 +411,26 @@ footer p {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    background-color: #f9f9f9; /* Fond légèrement gris pour les champs de saisie */
+    background-color: #f9f9f9;
     color: #333;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input:focus {
-    border-color: #e67e22; /* Bordure orange lors de la focalisation */
-    box-shadow: 0 0 5px rgba(230, 126, 34, 0.5); /* Ombre orange pour un effet de focus */
+    border-color: #e67e22;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
     outline: none;
 }
 
-/* Styles pour les boutons (login et auth) */
-.btn-auth, .btn-login {
-    background-color: #e67e22; /* Orange vif pour le bouton */
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none;
+}
+
+.btn-auth {
+    background-color: #e67e22;
     color: white;
     padding: 12px;
     border: none;
@@ -298,33 +441,31 @@ footer p {
     width: 100%;
 }
 
-.btn-auth:hover, .btn-login:hover {
-    background-color: #d35400; /* Orange foncé au survol */
+.btn-auth:hover {
+    background-color: #d35400;
 }
 
-.btn-auth:disabled, .btn-login:disabled {
+.btn-auth:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-/* Styles pour les liens (login et auth) */
-.auth-links, .login-links {
+.auth-links {
     margin-top: 20px;
     text-align: center;
 }
 
-.auth-links a, .login-links a {
+.auth-links a {
     color: #e67e22;
     text-decoration: none;
     font-size: 0.9em;
     transition: color 0.3s ease;
 }
 
-.auth-links a:hover, .login-links a:hover {
+.auth-links a:hover {
     color: #d35400;
 }
 
-/* Styles pour la table de facture */
 .facture-container {
     padding: 40px 20px;
     background-color: #ffffff;
@@ -379,7 +520,6 @@ footer p {
     outline: none;
 }
 
-/* Styles pour le bouton d'impression */
 .btn-print {
     display: inline-block;
     padding: 12px 24px;
@@ -395,4 +535,89 @@ footer p {
 
 .btn-print:hover {
     background-color: #d35400;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #389baf;
+}
+
+.login-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    width: 100%;
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
+    outline: none;
+}
+
+.btn-login {
+    background-color: #e67e22;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background-color: #d35400;
+}
+
+.login-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-links a {
+    color: #e67e22;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+    color: #d35400;
 }

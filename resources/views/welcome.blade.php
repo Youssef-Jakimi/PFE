@@ -13,8 +13,8 @@
         <nav>
             <div class="slidein section">
                 <a href="#"><span data-hover="Accueil">Accueil</span></a>
-                <a href="#"><span data-hover="Se connecter">Se connecter</span></a>
-                <a href="#"><span data-hover="Services">Services</span></a>
+                <a href="auth"><span data-hover="Se connecter">Se connecter</span></a>
+                <a href="#services"><span data-hover="Services">Services</span></a>
                 <a href="#"><span data-hover="Contact">Contact</span></a>
             </div>
         </nav>
@@ -33,7 +33,7 @@
         <p>YR-HOTELS est une série d'hôtels dans différents pays qui offre des services luxueux, des chambres spacieuses, ainsi que des services de restauration et de spa.</p>
     </section>
 
-    <section class="services">
+    <section id="services" class="services">
         <h2>Nos Services</h2>
         <div class="service-cards">
             <div class="card">
@@ -44,12 +44,12 @@
             <div class="card">
                 <i class="fas fa-utensils"></i>
                 <h3>Restauration</h3>
-                <p>Dégustez des plats exquis préparés par nos chefs étoilés.</p>
+                <p>Dégustez des plats exotiques préparés par notre selections de chefs étoilés.</p>
             </div>
             <div class="card">
                 <i class="fas fa-concierge-bell"></i>
                 <h3>Service Chambre</h3>
-                <p>Un service de chambre 24/7 pour votre confort.</p>
+                <p>Un service de chambre 24/7 pour votre confort et joie.</p>
             </div>
         </div>
     </section>

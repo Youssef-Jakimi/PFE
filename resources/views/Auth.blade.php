@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="login-container">
     <div class="auth-box bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">S'inscrire</h1>
         <form class="auth-form" action="{{ route('Auth') }}" method="post">
@@ -34,6 +34,9 @@
             </div>
             <button type="submit" id="submitB" class="btn-auth w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300" disabled>S'enregistrer</button>
         </form>
+        <div class="auth-links mt-6 text-center">
+            <a href="{{ route('index.connect') }}" class="text-orange-500 hover:text-orange-600 transition duration-300">Déjà inscrit ? Se connecter</a>
+        </div>
     </div>
 </body>
 </html>
