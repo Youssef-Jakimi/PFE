@@ -3,12 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// Route pour la page d'accueil (welcome)
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route de test d'authentification
 Route::get('/test-auth', function () {
     $email = 'youssef@youssef';
     $password = 'ssss'; // Plain text version of your password
@@ -20,7 +14,8 @@ Route::get('/test-auth', function () {
     }
 });
 
-//afficher la page d'authentification
+
+
 Route::get('/auth', function () {
     return view('Auth');
 });

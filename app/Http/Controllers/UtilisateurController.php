@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Validator;
 class UtilisateurController extends Controller
 {
     public function index(){
-        return view ('connect');
+        return view('connect');
     }
     /**
      * Méthode pour gérer la connexion d'un utilisateur.
      */
     public function login(Request $request)
     {
-        
         $credentials = $request->only('CIN', 'password');
         
         if (Auth::attempt($credentials)) {

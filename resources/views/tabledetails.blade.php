@@ -6,7 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Gestion des Réservations</title>
 </head>
-
 <body>
     <div class="container mt-4">
         <h2>Réservations</h2>
@@ -21,7 +20,7 @@
                 @csrf
                 <input type="hidden" name="type" value="Chambre">
                 Produit :
-                <select name="produit" class="form-control mb-2">
+                <select name="produit"  class="form-control mb-2">
                     @foreach($produits as $produit)
                         <option value="{{ $produit->id }}">{{ $produit->PR_CODE }}</option>
                     @endforeach
@@ -41,6 +40,7 @@
                     <tr>
                         <th>Id Réservation</th>
                         <th>Id Produit</th>
+                        <th>Produit</th>
                         <th>Prix Total</th>
                         <th>Date Début</th>
                         <th>Date Fin</th>
@@ -48,16 +48,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($details->where('type', 'Chambre') as $detail)
+                    @foreach($chambres as $chambre)
                         <tr>
-                            <td>{{ $detail->id }}</td>
-                            <td>{{ $detail->produit_id }}</td>
-                            <td>{{ $detail->Prix_Total }}</td>
-                            <td>{{ $detail->Date_D }}</td>
-                            <td>{{ $detail->Date_F }}</td>
+                            <td>{{ $chambre->id }}</td>
+                            <td>{{ $chambre->produit_id }}</td>
+                            <td>{{ $chambre->nom }}</td>
+                            <td>{{ $chambre->Prix_Total }}</td>
+                            <td>{{ $chambre->Date_D }}</td>
+                            <td>{{ $chambre->Date_F }}</td>
                             <td>
-                                <a href="/updatedetail/{{ $detail->id }}" class="btn btn-info btn-sm">Modifier</a>
-                                <a href="/deletedetail/{{ $detail->id }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                <a href="/updatedetail" class="btn btn-info btn-sm">Modifier</a>
+                                <a href="/deletedetail" class="btn btn-danger btn-sm">Supprimer</a>
                             </td>
                         </tr>
                     @endforeach
@@ -66,7 +67,7 @@
         </div>
 
         <!-- Section pour Table -->
-        <button class="btn btn-primary mb-3" id="TableButton">Réserver Table</button>
+       <button class="btn btn-primary mb-3" id="TableButton">Réserver Table</button>
         <div id="TableDiv" style="display: none;">
             <form action="{{ route('FaireReservation') }}" method="post" class="mb-3">
                 @csrf
@@ -92,6 +93,7 @@
                     <tr>
                         <th>Id Réservation</th>
                         <th>Id Produit</th>
+                        <th>Produit</th>
                         <th>Prix Total</th>
                         <th>Date Début</th>
                         <th>Date Fin</th>
@@ -99,16 +101,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($details->where('type', 'Table') as $detail)
+                    @foreach($tables as $table)
                         <tr>
-                            <td>{{ $detail->id }}</td>
-                            <td>{{ $detail->produit_id }}</td>
-                            <td>{{ $detail->Prix_Total }}</td>
-                            <td>{{ $detail->Date_D }}</td>
-                            <td>{{ $detail->Date_F }}</td>
+                            <td>{{ $table->id }}</td>
+                            <td>{{ $table->produit_id }}</td>
+                            <td>{{ $table->nom }}</td>
+                            <td>{{ $table->Prix_Total }}</td>
+                            <td>{{ $table->Date_D }}</td>
+                            <td>{{ $table->Date_F }}</td>
                             <td>
-                                <a href="/updatedetail/{{ $detail->id }}" class="btn btn-info btn-sm">Modifier</a>
-                                <a href="/deletedetail/{{ $detail->id }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                <a href="/updatedetail" class="btn btn-info btn-sm">Modifier</a>
+                                <a href="/deletedetail" class="btn btn-danger btn-sm">Supprimer</a>
                             </td>
                         </tr>
                     @endforeach
@@ -150,7 +153,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($details->where('type', 'Spa') as $detail)
+                   {{--  @foreach($details->where('type', 'Spa') as $detail)
                         <tr>
                             <td>{{ $detail->id }}</td>
                             <td>{{ $detail->produit_id }}</td>
@@ -162,7 +165,7 @@
                                 <a href="/deletedetail/{{ $detail->id }}" class="btn btn-danger btn-sm">Supprimer</a>
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>
@@ -189,4 +192,4 @@
 </body>
 </html>
  
-
+ 

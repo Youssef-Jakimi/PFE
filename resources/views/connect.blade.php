@@ -8,23 +8,21 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1>Se connecter</h1>
-            <form class="login-form" action="{{ route('ajouter.login') }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <input type="text" name="CIN" placeholder="CIN" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="Mot de passe" class="form-input" required>
-                </div>
-                <button type="submit" class="btn-login">Se connecter</button>
-            </form>
-            <div class="login-links">
-                <a href="{{ route('Auth') }}">Créer un compte</a>
+
+        <div class="in-up">
+            <div class="login">
+                <h1 style="color: white"><pre>   Se connecter :  </pre></h1>
+                <form class="main-form" action={{ route('ajouter.login') }} method="post">
+                            @csrf<br>
+                        <input type="text" name="CIN" placeholder="CIN" class="in-up-form" required><br><br>
+                        <input type="password" name="password" placeholder="Password" class="in-up-form" required> <br>
+                        <input  type="submit" value="Connecter" class="loginB">
+
+
+                 </form>
             </div>
-        </div>
+
+
     </div>
 </body>
 </html>
