@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hôtel Luxe - Accueil</title>
+    <title>YR HOTELS - Accueil</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+        </div>
         <h1>YR HOTELS</h1>
         <nav>
             <div class="slidein section">
@@ -24,7 +27,7 @@
         <div class="hero-content">
             <h2>Vivez une expérience inoubliable</h2>
             <p>Réservez votre séjour dans un hôtel 5 étoiles avec un service exceptionnel.</p>
-            <a href="#" class="btn">Réserver maintenant</a>
+            <a href="auth" class="btn">Réserver maintenant</a>
         </div>
     </section>
 
