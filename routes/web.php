@@ -60,5 +60,4 @@ Route::post('/Table', [App\Http\Controllers\DetailReservationController::class, 
 Route::get('/facture', [App\Http\Controllers\DetailReservationController::class, 'facture'])->name("facture");
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-// Route for handling form submission (using MailController)
-Route::post('/contact', [MailController::class, 'sendContactForm'])->name('contact.send');
+
