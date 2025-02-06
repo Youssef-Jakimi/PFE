@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
-<body class="login-container">
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+        </div>
+        <h1>YR HOTELS</h1>
+    </header>
+<div class="login-container">
     <div class="auth-box bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">S'inscrire</h1>
         <form class="auth-form" action="{{ route('Auth') }}" method="post">
@@ -37,6 +44,7 @@
         <div class="auth-links mt-6 text-center">
             <a href="{{ route('index.connect') }}" class="text-orange-500 hover:text-orange-600 transition duration-300">Déjà inscrit ? Se connecter</a>
         </div>
+    </div>
     </div>
 </body>
 </html>

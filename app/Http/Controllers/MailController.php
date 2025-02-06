@@ -1,65 +1,36 @@
 <?php
 
+// app/Http/Controllers/MailController.php
+
 namespace App\Http\Controllers;
 
-use App\Models\mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail; // If you decide to use a Mailable class later
 
 class MailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Method to send the contact form email
+    public function sendContactForm(Request $request)
     {
-        //
-    }
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Prepare the email data
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Send the email
+        Mail::to('admin@example.com')->send(new ContactFormMail($data));
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(mail $mail)
-    {
-        //
+        // Redirect back with a success message
+        return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
     }
 }

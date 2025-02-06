@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController;
 
 Route::get('/test-auth', function () {
     $email = 'youssef@youssef';
@@ -57,3 +58,7 @@ Route::post('/Table', [App\Http\Controllers\DetailReservationController::class, 
 
 // Route pour afficher la facture
 Route::get('/facture', [App\Http\Controllers\DetailReservationController::class, 'facture'])->name("facture");
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+// Route for handling form submission (using MailController)
+Route::post('/contact', [MailController::class, 'sendContactForm'])->name('contact.send');

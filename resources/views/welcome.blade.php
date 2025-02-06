@@ -12,13 +12,13 @@
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
         </div>
-        <h1>YR HOTELS</h1>
+        <h2>YR HOTELS</h2>
         <nav>
             <div class="slidein section">
                 <a href="#"><span data-hover="Accueil">Accueil</span></a>
                 <a href="auth"><span data-hover="Se connecter">Se connecter</span></a>
                 <a href="#services"><span data-hover="Services">Services</span></a>
-                <a href="#"><span data-hover="Contact">Contact</span></a>
+                <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
             </div>
         </nav>
     </header>

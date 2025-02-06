@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+        </div>
+        <h1>YR HOTELS</h1>
+    </header>
     <div class="login-container">
         <div class="login-box">
             <h1>Se connecter</h1>
