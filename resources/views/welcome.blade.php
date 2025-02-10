@@ -50,9 +50,11 @@
                 <p>Dégustez des plats exotiques préparés par notre selections de chefs étoilés.</p>
             </div>
             <div class="card">
-                <i class="fas fa-concierge-bell"></i>
-                <h3>Service Chambre</h3>
-                <p>Un service de chambre 24/7 pour votre confort et joie.</p>
+                <a href="{{ route('chambre') }}">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3>Service Chambre</h3>
+                    <p>Un service de chambre 24/7 pour votre confort et joie.</p>
+                </a>
             </div>
         </div>
     </section>

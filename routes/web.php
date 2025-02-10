@@ -3,17 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ChambreController;
 
-Route::get('/test-auth', function () {
-    $email = 'youssef@youssef';
-    $password = 'ssss'; // Plain text version of your password
-
-    if (Auth::attempt(['email' => $email, 'password' => $password])) {
-        return 'Login successful!';
-    } else {
-        return 'Login failed!';
-    }
-});
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +13,18 @@ Route::get('/', function () {
 Route::get('/auth', function () {
     return view('Auth');
 });
-
+Route::get('/chambre', function () {
+    return view('chambre');
+});
+Route::get('/tabl', function () {
+    return view('tabl');
+});
+Route::get('/menu', function () {
+    return view('menu');
+});
+Route::get('/spa', function () {
+    return view('spa');
+});
 // formulaire d'authentification
 Route::post('/auth', [App\Http\Controllers\UtilisateurController::class, 'auth'])->name("Auth");
 
@@ -60,4 +62,7 @@ Route::post('/Table', [App\Http\Controllers\DetailReservationController::class, 
 Route::get('/facture', [App\Http\Controllers\DetailReservationController::class, 'facture'])->name("facture");
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+Route::get('/chambre', [ChambreController::class, 'index'])->name('chambre');
 
