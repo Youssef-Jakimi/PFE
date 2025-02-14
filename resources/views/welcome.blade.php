@@ -43,18 +43,19 @@
                 <i class="fas fa-spa"></i>
                 <h3>Spa & Bien-être</h3>
                 <p>Profitez de nos services de spa pour une relaxation totale.</p>
+                <a href="{{ route('spa') }}" style="color: #e67e22" class="en-savoir-plus">En savoir plus >></a>
             </div>
             <div class="card">
                 <i class="fas fa-utensils"></i>
                 <h3>Restauration</h3>
                 <p>Dégustez des plats exotiques préparés par notre selections de chefs étoilés.</p>
+                <a href="{{ route('tabl') }}" style="color: #e67e22" class="en-savoir-plus">En savoir plus >></a>
             </div>
             <div class="card">
-                <a href="{{ route('chambre') }}">
                     <i class="fas fa-concierge-bell"></i>
                     <h3>Service Chambre</h3>
                     <p>Un service de chambre 24/7 pour votre confort et joie.</p>
-                </a>
+                    <a href="{{ route('chambre') }}" style="color: #e67e22" class="en-savoir-plus">En savoir plus >></a>
             </div>
         </div>
     </section>

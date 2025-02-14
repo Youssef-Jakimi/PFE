@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\TablController;
+use App\Http\Controllers\SpaController;
+use App\Http\Controllers\MenuController;
 
 
 Route::get('/', function () {
@@ -66,3 +69,7 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 
 Route::get('/chambre', [ChambreController::class, 'index'])->name('chambre');
 
+Route::get('/tabl', [TablController::class, 'index'])->name('tabl');
+Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+
+Route::get('/spa', [SpaController::class, 'index'])->name('spa');
