@@ -107,7 +107,7 @@ tr:hover {
     <div class="container">
         <h1>Réservez votre Expérience Spa</h1>
 
-       
+
         <h2>Nos Services</h2>
         <div class="section-container">
             <div class="card">
@@ -127,7 +127,7 @@ tr:hover {
             </div>
         </div>
 
-       
+
         <h2>Nos Packs</h2>
         <div class="section-container">
             <div class="card">
@@ -147,7 +147,7 @@ tr:hover {
             </div>
         </div>
 
-    
+
         <h2>CATALOGUE</h2>
         <div class="catalogue-container">
             <table>

@@ -132,7 +132,7 @@
         <div class="table">
             <img src="{{ asset('images/t1.jpg') }}" alt="Table 1">
             <div class="table-info">
-                <h2>Table rendz-vous</h2>
+                <h2>Table rendez-vous</h2>
                 <p>Une table cosy pour deux personnes avec vue sur la mer, idéale pour une soirée romantique.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
                 <button class="btn">Réserver</button>

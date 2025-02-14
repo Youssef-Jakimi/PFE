@@ -226,7 +226,7 @@ table {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #389baf;
+    background-color: #345f8a;
 }
 
 .auth-box ,.login-box{
@@ -467,29 +467,6 @@ textarea.form-control {
 .btn-primary:hover {
     background-color: #d35400;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 768px) {
     .container {
