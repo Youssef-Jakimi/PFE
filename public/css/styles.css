@@ -122,21 +122,32 @@ nav ul li a:hover {
 .services {
     padding: 80px 20px;
     text-align: center;
+<<<<<<< HEAD
     background-color: #f0efe7;
+=======
+    background: #f9f9f9;
+    text-decoration:none;
+    color: inherit;
+>>>>>>> bce17e0e3e1fed7b9190f1bf00dfa80ec9451520
 }
 
 .services h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
+    text-decoration:none;
+    color: inherit;
 }
 
 .service-cards {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    text-decoration:none;
+    color: inherit;
 }
 
 .card {
+
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -155,17 +166,6 @@ nav ul li a:hover {
     color: #e67e22;
     margin-bottom: 20px;
 }
-
-.card h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 1em;
-    color: #666;
-}
-
 footer {
     background: #2c3e50;
     color: white;
@@ -174,9 +174,7 @@ footer {
     margin-top: 40px;
 }
 
-footer p {
-    margin: 0;
-}
+
 
 .social-icons {
     margin-top: 10px;
@@ -192,7 +190,6 @@ footer p {
 .social-icons a:hover {
     color: #e67e22;
 }
-
 
 
 .slidein a {
@@ -238,7 +235,7 @@ table {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #389baf;
+    background-color: #345f8a;
 }
 
 .auth-box ,.login-box{
@@ -479,29 +476,6 @@ textarea.form-control {
 .btn-primary:hover {
     background-color: #d35400;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 768px) {
     .container {

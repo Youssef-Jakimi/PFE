@@ -100,9 +100,9 @@ tr:hover {
 </head>
 <body>
     <div class="container">
-        <h1>Réservez votre Table</h1>
+        <h1 align=center>YR-HOTELS Menu</h1>
 
-        <h2 align="center">nos coups de coeur</h2>
+        <h2>nos coups de coeur:</h2>
         <div class="plats-container">
             <div class="plat">
                 <img src="{{ asset('images/p1.jpg') }}" alt="Plat 1">

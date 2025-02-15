@@ -106,6 +106,23 @@
                 width: 100%;
             }
         }
+        .menu-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            text-align: center;
+            background-color: #e67e22;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #d35400;;
+            transform: translateY(-5px)
+        }
     </style>
 </head>
 <body>
@@ -115,14 +132,9 @@
         <div class="table">
             <img src="{{ asset('images/t1.jpg') }}" alt="Table 1">
             <div class="table-info">
-                <h2>Table Romantique</h2>
+                <h2>Table rendez-vous</h2>
                 <p>Une table cosy pour deux personnes avec vue sur la mer, idéale pour une soirée romantique.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
-                <div class="amenities">
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-parking"></i>
-                    <i class="fas fa-seedling"></i>
-                </div>
                 <button class="btn">Réserver</button>
             </div>
         </div>
@@ -132,12 +144,7 @@
             <div class="table-info">
                 <h2>Table Familiale</h2>
                 <p>Parfait pour les repas en famille avec une ambiance conviviale et un grand espace.</p>
-                <p class="capacity">Capacité : 6 personnes</p>
-                <div class="amenities">
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-parking"></i>
-                    <i class="fas fa-seedling"></i>
-                </div>
+                <p class="capacity">Capacité : de 4 à 8 personnes</p>
                 <button class="btn">Réserver</button>
             </div>
         </div>
@@ -146,16 +153,17 @@
             <img src="{{ asset('images/t3.jpg') }}" alt="Table 3">
             <div class="table-info">
                 <h2>Table VIP</h2>
-                <p>Une expérience gastronomique exclusive avec un service premium et une intimité totale.</p>
+                <p>Une touche gastronomique exclusive et privée avec un service premium et une intimité totale.</p>
                 <p class="capacity">Capacité : 4 personnes</p>
                 <div class="amenities">
                     <i class="fas fa-wifi"></i>
                     <i class="fas fa-parking"></i>
-                    <i class="fas fa-seedling"></i>
+                    <i class="fas fa-concierge-bell"></i>
                 </div>
                 <button class="btn">Réserver</button>
             </div>
         </div>
+        <a href="{{ route('menu') }}" class="menu-btn">Voir le Menu</a>
     </div>
 </body>
 </html>
