@@ -16,7 +16,7 @@
             <nav>
                 <div class="slidein section">
                     <a href="#"><span data-hover="Accueil">Accueil</span></a>
-                    <a href="connect"><span data-hover="Se connecter">Se connecter</span></a>
+                    <a href="{{ route('index.connect') }}"><span data-hover="Se connecter">Se connecter</span></a>
                     <a href="#services"><span data-hover="Services">Services</span></a>
                     <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
                 </div>
@@ -27,7 +27,7 @@
         <div class="hero-content">
             <h2>Vivez une expérience inoubliable</h2>
             <p>Réservez votre séjour dans un hôtel 5 étoiles avec un service exceptionnel.</p>
-            <a href="auth" class="btn">Réserver maintenant</a>
+            <a href="#services" class="btn"><span data-hover="Services">Réserver maintenant</span></a>
         </div>
     </section>
 

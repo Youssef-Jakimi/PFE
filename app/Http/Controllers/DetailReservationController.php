@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detail_reservation;
 use App\Models\panier;
 use App\Models\reservation;
 use Illuminate\Http\Request;
+use App\Models\detail_reservation;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DetailReservationController extends Controller
 {
@@ -140,7 +141,15 @@ class DetailReservationController extends Controller
 
     public function facture()
     {
-        $detail_reservation = DB::table('detail_reservations')->get();
+        $detail_reservation = DB::table('detail_reservations')
+    ->join('reservations', 'detail_reservations.reservation_id', '=', 'reservations.id')
+    ->join('utilisateurs', 'utilisateurs.id', '=', 'reservations.utilisateur_id') 
+    ->join('produits', 'produits.id', '=', 'detail_reservations.produit_id')
+    ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
+    ->where('utilisateurs.id', '=', Auth::user()->id)
+    ->select('detail_reservations.reservation_id', 'categories.nom as categorie', 'detail_reservations.Prix_Total', 'detail_reservations.Date_D', 'detail_reservations.Date_F') // Ensure correct table prefix
+    ->get();
+
  
         return view("facture")->with(['details' => $detail_reservation]);
     }

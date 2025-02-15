@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td><input type="text" value="{{ $detail->reservation_id }}" readonly></td>
-                        <td><input type="text" value="{{ $detail->produit_id }}" readonly></td>
+                        <td><input type="text" value="{{ $detail->categorie }}" readonly></td>
                         <td><input type="text" value="{{ $detail->Prix_Total }}" readonly></td>
                         <td><input type="text" value="{{ $detail->Date_D }}" readonly></td>
                         <td><input type="text" value="{{ $detail->Date_F }}" readonly></td>

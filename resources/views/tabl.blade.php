@@ -135,7 +135,7 @@
                 <h2>Table rendez-vous</h2>
                 <p>Une table cosy pour deux personnes avec vue sur la mer, idéale pour une soirée romantique.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
-                <button class="btn">Réserver</button>
+                <button  class="btn">Réserver</button>
             </div>
         </div>
 

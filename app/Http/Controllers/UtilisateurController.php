@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class UtilisateurController extends Controller
 {
     public function index(){
+        if(!Auth::user())
         return view('connect');
+        else
+        return view('welcome');
     }
     /**
      * Méthode pour gérer la connexion d'un utilisateur.

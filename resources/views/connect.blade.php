@@ -15,7 +15,7 @@
             </div>
             <nav>
                 <div class="slidein section">
-                    <a href="#"><span data-hover="Accueil">Accueil</span></a>
+                    <a href="/"><span data-hover="Accueil">Accueil</span></a>
                     <a href="connect"><span data-hover="Se connecter">Se connecter</span></a>
                     <a href="#services"><span data-hover="Services">Services</span></a>
                     <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
