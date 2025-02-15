@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
-        </div>
-        <h1>YR HOTELS</h1>
-    </header>
+    <div>
+        <header>
+            <div class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+            </div>
+            <nav>
+                <div class="slidein section">
+                    <a href="#"><span data-hover="Accueil">Accueil</span></a>
+                    <a href="connect"><span data-hover="Se connecter">Se connecter</span></a>
+                    <a href="#services"><span data-hover="Services">Services</span></a>
+                    <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
+                </div>
+            </nav>
+        </header>
+    </div>
     <div class="login-container">
         <div class="login-box">
             <h1>Se connecter</h1>

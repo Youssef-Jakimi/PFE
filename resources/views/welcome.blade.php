@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
-        </div>
-        <h2>YR HOTELS</h2>
-        <nav>
-            <div class="slidein section">
-                <a href="#"><span data-hover="Accueil">Accueil</span></a>
-                <a href="auth"><span data-hover="Se connecter">Se connecter</span></a>
-                <a href="#services"><span data-hover="Services">Services</span></a>
-                <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
+    <div>
+        <header>
+            <div class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
             </div>
-        </nav>
-    </header>
-
+            <nav>
+                <div class="slidein section">
+                    <a href="#"><span data-hover="Accueil">Accueil</span></a>
+                    <a href="connect"><span data-hover="Se connecter">Se connecter</span></a>
+                    <a href="#services"><span data-hover="Services">Services</span></a>
+                    <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
+                </div>
+            </nav>
+        </header>
+    </div>
     <section class="hero">
         <div class="hero-content">
             <h2>Vivez une expérience inoubliable</h2>
