@@ -31,6 +31,6 @@ class ChambreController extends Controller
         return redirect("/Table");
         }
         else
-        return response()->json(['error' => 'Unauthorized'], 401);4
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }
