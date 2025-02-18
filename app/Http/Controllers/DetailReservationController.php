@@ -98,7 +98,7 @@ class DetailReservationController extends Controller
         $panier = DB::table('paniers')
         ->join('produits', 'paniers.produit_id', '=', 'produits.id')
         ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
-        ->select('paniers.id', 'paniers.reservation_id', 'categories.nom', 'paniers.produit_id', 'Prix_Total', 'Date_D', 'Date_F')
+        ->select('paniers.id', 'categories.nom', 'paniers.produit_id', 'Prix_Total', 'Date_D', 'Date_F')
         ->get();
         $chambre = $panier->where('nom', '=', 'Chambre');
         $table = $panier->where('nom', '=', 'Table');

@@ -118,6 +118,7 @@
     </style>
 </head>
 <body>
+ 
     <div class="container">
         <h1>Réservez votre Table</h1>
         <div class="table">
@@ -126,7 +127,16 @@
                 <h2>Table rendez-vous</h2>
                 <p>Table cosy pour deux avec vue sur la mer.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
-                <a href="#" class="btn">Réserver</a>
+                <button href="#" id="reserver" class="btn">Réserver</button>
+                
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="4" hidden>
+                    <input type="date" class="date" name="date" >
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
+                
             </div>
         </div>
 
@@ -137,6 +147,13 @@
                 <p>Parfait pour les repas en famille.</p>
                 <p class="capacity">Capacité : 4-8 personnes</p>
                 <a href="#" class="btn">Réserver</a>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="4" hidden>
+                    <input type="date" class="date" name="date" >
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
 
@@ -147,10 +164,18 @@
                 <p>Privée avec service premium.</p>
                 <p class="capacity">Capacité : 4 personnes</p>
                 <a href="#" class="btn">Réserver</a>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="4" hidden>
+                    <input type="date" class="date" name="date" >
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
 
         <a href="{{ route('menu') }}" class="menu-btn">Voir le Menu</a>
     </div>
+    
 </body>
 </html>

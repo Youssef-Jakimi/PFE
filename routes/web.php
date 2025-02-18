@@ -70,6 +70,9 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 Route::get('/chambre', [ChambreController::class, 'index'])->name('chambre');
 
 Route::get('/tabl', [TablController::class, 'index'])->name('tabl');
+Route::post('/tabl', [TablController::class, 'tablePanier'])->name('tablePanier');
+
+
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 
 Route::get('/spa', [SpaController::class, 'index'])->name('spa');
