@@ -133,6 +133,15 @@ h1, h2 {
 
                 </div>
                 <button class="btn">Réserver</button>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('chambrePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="1" hidden>
+                    <input type="date" class="date" name="dateD" required>
+                    <input type="date" class="date" name="dateF" required >
+
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
 
@@ -151,6 +160,15 @@ h1, h2 {
 
                 </div>
                 <button class="btn">Réserver</button>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('chambrePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="3" hidden>
+                    <input type="date" class="date" name="dateD" required>
+                    <input type="date" class="date" name="dateF" required>
+
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
 
@@ -168,6 +186,15 @@ h1, h2 {
                     <i class="fa-solid fa-spa"></i>
                 </div>
                 <button class="btn">Réserver</button>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('chambrePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="1" hidden>
+                    <input type="date" class="date" name="dateD" required> 
+                    <input type="date" class="date" name="dateF" required>
+
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
     </div>

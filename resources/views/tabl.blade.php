@@ -133,7 +133,7 @@
 
                 <form action="{{ route('tablePanier') }}" method="post" >@csrf
                     <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" >
+                    <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn"  >Confirmer</button>
                 </form>
                 
@@ -151,7 +151,7 @@
 
                 <form action="{{ route('tablePanier') }}" method="post" >@csrf
                     <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" >
+                    <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn"  >Confirmer</button>
                 </form>
             </div>
@@ -168,7 +168,7 @@
 
                 <form action="{{ route('tablePanier') }}" method="post" >@csrf
                     <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" >
+                    <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn"  >Confirmer</button>
                 </form>
             </div>

@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ChambreController;
-use App\Http\Controllers\TablController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TablController;
+use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProduitController;
 
 
 Route::get('/', function () {
@@ -68,6 +69,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/chambre', [ChambreController::class, 'index'])->name('chambre');
+Route::post('/chambre', [ChambreController::class, 'chambrePanier'])->name('chambrePanier');
 
 Route::get('/tabl', [TablController::class, 'index'])->name('tabl');
 Route::post('/tabl', [TablController::class, 'tablePanier'])->name('tablePanier');
@@ -76,3 +78,6 @@ Route::post('/tabl', [TablController::class, 'tablePanier'])->name('tablePanier'
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 
 Route::get('/spa', [SpaController::class, 'index'])->name('spa');
+
+Route::get('/panier', [ProduitController::class, 'index'])->name('panier');
+Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('confirmerCommande');

@@ -145,16 +145,40 @@
                 <img src="{{ asset('images/s1.jpg') }}" alt="Massage Relaxant">
                 <h3>Massage Relaxant</h3>
                 <p>Un massage doux pour apaiser votre corps et votre esprit.</p>
+                <a href="#" class="btn">Réserver</a>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="5" hidden>
+                    <input type="date" class="date" name="date" required>
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
             <div class="card" tabindex="0">
                 <img src="{{ asset('images/s2.jpg') }}" alt="Soins du Visage">
                 <h3>Soins du Visage</h3>
                 <p>Un soin revitalisant pour une peau éclatante et hydratée.</p>
+                <a href="#" class="btn">Réserver</a>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="5" hidden>
+                    <input type="date" class="date" name="date" required>
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
             <div class="card" tabindex="0">
                 <img src="{{ asset('images/s3.jpg') }}" alt="Hammam & Sauna">
                 <h3>Hammam & Sauna</h3>
                 <p>Profitez de la chaleur pour une relaxation totale.</p>
+                <a href="#" class="btn">Réserver</a>
+                {{-- make the form popup when the button is clicked --}}
+
+                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                    <input type="number" name="produit" value="5" hidden>
+                    <input type="date" class="date" name="date" required>
+                    <button type="submit" class="btn"  >Confirmer</button>
+                </form>
             </div>
         </div>
 

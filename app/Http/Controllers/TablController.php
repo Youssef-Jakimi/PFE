@@ -17,9 +17,11 @@ class TablController extends Controller
         return view('tabl');
     }
     public function tablePanier(request $request){
-
+        $request->validate([
+            'DateD' => ['required', 'date', 'after:today'],
+        ]);
+        if(Auth::id()!=NULL){
         $userID = Auth::user()->id;
-        if($userID!=NULL){
         $panier = new panier();
         $panier->utilisateur_id=$userID;
         $panier->produit_id=$request->input("produit");

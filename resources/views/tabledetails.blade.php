@@ -153,7 +153,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                   {{--  @foreach($details->where('type', 'Spa') as $detail)
+                     @foreach($spas as $detail)
                         <tr>
                             <td>{{ $detail->id }}</td>
                             <td>{{ $detail->produit_id }}</td>
@@ -165,7 +165,7 @@
                                 <a href="/deletedetail/{{ $detail->id }}" class="btn btn-danger btn-sm">Supprimer</a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

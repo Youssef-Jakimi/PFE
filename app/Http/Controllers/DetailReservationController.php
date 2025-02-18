@@ -99,15 +99,17 @@ class DetailReservationController extends Controller
         ->join('produits', 'paniers.produit_id', '=', 'produits.id')
         ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
         ->select('paniers.id', 'categories.nom', 'paniers.produit_id', 'Prix_Total', 'Date_D', 'Date_F')
+        ->where("paniers.utilisateur_id","=",Auth::id())
         ->get();
         $chambre = $panier->where('nom', '=', 'Chambre');
         $table = $panier->where('nom', '=', 'Table');
+        $spa = $panier->where('nom', '=', 'Spa');
         $produit = DB::table('produits')->get();
         //$reservation= DB::table('paniers')->value('reservation_id');
 
  
         
-        return view("tabledetails")->with(['chambres' => $chambre])->with(['tables' => $table])->with(['produits' => $produit]);
+        return view("tabledetails")->with(['chambres' => $chambre])->with(['tables' => $table])->with(['produits' => $produit])->with(['spas' => $spa]);
     }
     public function updatedetail($id){
         $detail = detail_reservation::find($id);
@@ -141,13 +143,20 @@ class DetailReservationController extends Controller
 
     public function facture()
     {
+        $maxReservation = DB::table('detail_reservations')
+        ->join('reservations', 'detail_reservations.reservation_id', '=', 'reservations.id')
+        ->join('utilisateurs', 'utilisateurs.id', '=', 'reservations.utilisateur_id') 
+        ->where('utilisateurs.id', '=', Auth::user()->id)
+        ->max('reservation_id');
+
         $detail_reservation = DB::table('detail_reservations')
     ->join('reservations', 'detail_reservations.reservation_id', '=', 'reservations.id')
     ->join('utilisateurs', 'utilisateurs.id', '=', 'reservations.utilisateur_id') 
     ->join('produits', 'produits.id', '=', 'detail_reservations.produit_id')
     ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
     ->where('utilisateurs.id', '=', Auth::user()->id)
-    ->select('detail_reservations.reservation_id', 'categories.nom as categorie', 'detail_reservations.Prix_Total', 'detail_reservations.Date_D', 'detail_reservations.Date_F') // Ensure correct table prefix
+    ->where('detail_reservations.reservation_id','=',$maxReservation)
+    ->select('detail_reservations.reservation_id', 'categories.nom as categorie', 'detail_reservations.Prix_Total', 'detail_reservations.Date_D', 'detail_reservations.Date_F')
     ->get();
 
  
