@@ -8,15 +8,16 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #f0f0f5;
             color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
         }
 
@@ -26,143 +27,129 @@
         }
 
         .table {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
             display: flex;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
 
         .table:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
         .table img {
-            max-width: 200px;
-            border-radius: 8px;
-            margin-right: 20px;
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            height: 250px;
         }
 
         .table-info {
-            flex: 1;
+            padding: 15px 0;
         }
 
         .table-info h2 {
-            margin: 0 0 10px;
+            font-size: 1.6em;
+            margin-bottom: 10px;
             color: #2c3e50;
         }
 
         .table-info p {
-            margin: 0 0 10px;
-            color: #666;
+            font-size: 1em;
+            color: #555;
         }
 
         .table-info .capacity {
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #2c3e50;
         }
 
-        .table-info .amenities {
-            display: flex;
-            margin-top: 10px;
-        }
-
-        .table-info .amenities i {
-            margin-right: 15px;
-            color: #666;
-            font-size: 1.2em;
-        }
-
-        .table-info .btn {
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
             background-color: #e67e22;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
             font-size: 1em;
-            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
-        .table-info .btn:hover {
+        .btn:hover ,  .menu-btn:hover {
             background-color: #d35400;
         }
 
-        @media (max-width: 768px) {
-            .table {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .table img {
-                margin-bottom: 20px;
-                width: 100%;
-            }
-            .table-info {
-                flex: none;
-                width: 100%;
-            }
-        }
         .menu-btn {
             display: block;
             width: 200px;
             margin: 30px auto;
             text-align: center;
+            padding: 15px;
+            border-radius: 8px;
             background-color: #e67e22;
             color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
+            font-weight: bold;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
+        @media (min-width: 768px) {
+            .table {
+                flex-direction: row;
+                align-items: center;
+            }
 
-        .menu-btn:hover {
-            background-color: #d35400;;
-            transform: translateY(-5px)
+            .table img {
+                width: 250px;
+                height: auto;
+                margin-right: 20px;
+            }
+
+            .table-info {
+                flex: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Réservez votre Table</h1>
-
         <div class="table">
-            <img src="{{ asset('images/t1.jpg') }}" alt="Table 1">
+            <img src="{{ asset('images/t1.jpg') }}" alt="Table rendez-vous">
             <div class="table-info">
                 <h2>Table rendez-vous</h2>
-                <p>Une table cosy pour deux personnes avec vue sur la mer, idéale pour une soirée romantique.</p>
+                <p>Table cosy pour deux avec vue sur la mer.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
-                <button  class="btn">Réserver</button>
+                <a href="#" class="btn">Réserver</a>
             </div>
         </div>
 
         <div class="table">
-            <img src="{{ asset('images/t2.jpg') }}" alt="Table 2">
+            <img src="{{ asset('images/t2.jpg') }}" alt="Table Familiale">
             <div class="table-info">
                 <h2>Table Familiale</h2>
-                <p>Parfait pour les repas en famille avec une ambiance conviviale et un grand espace.</p>
-                <p class="capacity">Capacité : de 4 à 8 personnes</p>
-                <button class="btn">Réserver</button>
+                <p>Parfait pour les repas en famille.</p>
+                <p class="capacity">Capacité : 4-8 personnes</p>
+                <a href="#" class="btn">Réserver</a>
             </div>
         </div>
 
         <div class="table">
-            <img src="{{ asset('images/t3.jpg') }}" alt="Table 3">
+            <img src="{{ asset('images/t3.jpg') }}" alt="Table VIP">
             <div class="table-info">
                 <h2>Table VIP</h2>
-                <p>Une touche gastronomique exclusive et privée avec un service premium et une intimité totale.</p>
+                <p>Privée avec service premium.</p>
                 <p class="capacity">Capacité : 4 personnes</p>
-                <div class="amenities">
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-parking"></i>
-                    <i class="fas fa-concierge-bell"></i>
-                </div>
-                <button class="btn">Réserver</button>
+                <a href="#" class="btn">Réserver</a>
             </div>
         </div>
+
         <a href="{{ route('menu') }}" class="menu-btn">Voir le Menu</a>
     </div>
 </body>

@@ -115,6 +115,23 @@
         .card:focus, table:focus {
             outline: 2px solid #2c3e50;
         }
+        .menu-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            text-align: center;
+            background-color: #e67e22;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #d35400;;
+            transform: translateY(-5px)
+        }
 
     </style>
 </head>
@@ -200,6 +217,7 @@
                 </tr>
             </table>
         </div>
+        <a href="#" class="menu-btn">Reserver une seance</a>
     </div>
 </body>
 </html>

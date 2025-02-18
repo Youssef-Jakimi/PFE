@@ -6,8 +6,8 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0efe7;
-    color: #333;
+    background-color: #F5E9DA /*EEEEFF*/;
+    color: #8D6E63 /*333*/;
 }
 
 header {
