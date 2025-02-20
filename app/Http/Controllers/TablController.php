@@ -18,7 +18,7 @@ class TablController extends Controller
     }
     public function tablePanier(request $request){
         $request->validate([
-            'DateD' => ['required', 'date', 'after:today'],
+            'date' => ['required', 'date', 'after:today'],
         ]);
         if(Auth::id()!=NULL){
         $userID = Auth::user()->id;

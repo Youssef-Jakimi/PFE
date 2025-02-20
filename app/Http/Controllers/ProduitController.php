@@ -36,11 +36,10 @@ class ProduitController extends Controller
             $detail_reservation->save();
             $total = $total + $panier->Prix_Total;
         }
-       
-        $maxId = DB::table('factures')->where("utilisateur_id", Auth::id())->max('id');
+        $maxId = DB::table('factures')->where("utilisateur_id", Auth::id())->max('id');       
             DB::table('factures')->where('id', $maxId)->update(['Montant_Total' => $total]);
             
-            $delete = DB::table('paniers')->where("utilisateur_id",Auth::id())->delete();;
+            $delete = DB::table('paniers')->where("utilisateur_id",Auth::id())->delete();
         return redirect("/facture");
     }
     /**
