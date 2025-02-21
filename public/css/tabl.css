@@ -1,0 +1,177 @@
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #e67e22;
+        --accent-hover: #d35400;
+        --text-color: #333;
+        --text-light: #666;
+        --background: #f5f5f5;
+        --white: #fff;
+        --border-radius: 12px;
+        --shadow: rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: var(--primary-color);
+    }
+
+    /* SECTION TABLES */
+    .table {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px var(--shadow);
+        transition: var(--transition);
+    }
+
+    .table:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px var(--shadow);
+    }
+
+    .table img {
+        width: 100%;
+        border-radius: var(--border-radius);
+        object-fit: cover;
+        height: 250px;
+    }
+
+    .table-info {
+        padding: 15px 0;
+    }
+
+    .table-info h2 {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    .table-info p {
+        font-size: 1em;
+        color: var(--text-light);
+    }
+
+    .table-info .capacity {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var(--accent-color);
+        color: var(--white);
+        font-size: 1em;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn:hover, .menu-btn:hover {
+        background-color: var(--accent-hover);
+    }
+
+    .menu-btn {
+        display: block;
+        width: 200px;
+        margin: 30px auto;
+        text-align: center;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: var(--accent-color);
+        color: var(--white);
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    /* Formulaire de réservation */
+    .form-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--white);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .form-popup.active {
+        display: block;
+    }
+
+    .form-popup .date {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .form-popup .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    @media (min-width: 768px) {
+        .table {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .table img {
+            width: 250px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .table-info {
+            flex: 1;
+        }
+    }

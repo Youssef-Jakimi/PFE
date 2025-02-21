@@ -4,178 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservation de Table</title>
+    <link rel="stylesheet" href="{{ asset('css/tabl.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            text-align: center;
-            color: #2c3e50;
-        }
-
-        .table {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .table:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .table img {
-            width: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-            height: 250px;
-        }
-
-        .table-info {
-            padding: 15px 0;
-        }
-
-        .table-info h2 {
-            font-size: 1.6em;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .table-info p {
-            font-size: 1em;
-            color: #555;
-        }
-
-        .table-info .capacity {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #e67e22;
-            color: white;
-            font-size: 1em;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover ,  .menu-btn:hover {
-            background-color: #d35400;
-        }
-
-        .menu-btn {
-            display: block;
-            width: 200px;
-            margin: 30px auto;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #e67e22;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        @media (min-width: 768px) {
-            .table {
-                flex-direction: row;
-                align-items: center;
-            }
-
-            .table img {
-                width: 250px;
-                height: auto;
-                margin-right: 20px;
-            }
-
-            .table-info {
-                flex: 1;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
- 
     <div class="container">
-        <h1>Réservez votre Table</h1>
+        <h1>Réservation de Table</h1>
+
+        <!-- Table 1 -->
         <div class="table">
             <img src="{{ asset('images/t1.jpg') }}" alt="Table rendez-vous">
             <div class="table-info">
                 <h2>Table rendez-vous</h2>
                 <p>Table cosy pour deux avec vue sur la mer.</p>
                 <p class="capacity">Capacité : 2 personnes</p>
-                <button href="#" id="reserver" class="btn">Réserver</button>
-                
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
-                    <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
-                </form>
-                
+                <button class="btn" onclick="openForm(1)">Réserver</button>
             </div>
         </div>
 
+        <!-- Table 2 -->
         <div class="table">
             <img src="{{ asset('images/t2.jpg') }}" alt="Table Familiale">
             <div class="table-info">
                 <h2>Table Familiale</h2>
                 <p>Parfait pour les repas en famille.</p>
                 <p class="capacity">Capacité : 4-8 personnes</p>
-                <a href="#" class="btn">Réserver</a>
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
-                    <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
-                </form>
+                <button class="btn" onclick="openForm(2)">Réserver</button>
             </div>
         </div>
 
+        <!-- Table 3 -->
         <div class="table">
             <img src="{{ asset('images/t3.jpg') }}" alt="Table VIP">
             <div class="table-info">
                 <h2>Table VIP</h2>
                 <p>Privée avec service premium.</p>
                 <p class="capacity">Capacité : 4 personnes</p>
-                <a href="#" class="btn">Réserver</a>
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
-                    <input type="number" name="produit" value="4" hidden>
-                    <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
-                </form>
+                <button class="btn" onclick="openForm(3)">Réserver</button>
             </div>
         </div>
 
         <a href="{{ route('menu') }}" class="menu-btn">Voir le Menu</a>
     </div>
-    
+
+    <!-- Formulaire de réservation -->
+    <div class="overlay" id="overlay"></div>
+    <div class="form-popup" id="reservationForm">
+        <form action="{{ route('tablePanier') }}" method="post">
+            @csrf
+            <input type="number" name="produit" id="produit" hidden>
+            <input type="date" class="date" name="date" id="date" required>
+            <button type="submit" class="btn">Confirmer</button>
+            <button type="button" class="btn" onclick="closeForm()">Annuler</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm(tableId) {
+            document.getElementById('produit').value = tableId;
+            document.getElementById('reservationForm').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeForm() {
+            document.getElementById('reservationForm').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // Validation de la date
+        document.getElementById('date').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Ignorer l'heure
+
+            if (selectedDate < today) {
+                alert('Veuillez sélectionner une date valide (non passée).');
+                this.value = '';
+            }
+        });
+    </script>
 </body>
 </html>

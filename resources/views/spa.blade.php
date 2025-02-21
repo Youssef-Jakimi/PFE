@@ -4,136 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservation Spa & Tarifs</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/spa.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-
-        .scontainer {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .section-scontainer {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 8px;
-            height: auto;
-            transition: opacity 0.3s ease;
-        }
-
-        .card h3 {
-            margin: 10px 0;
-            color: #2c3e50;
-            font-size: 1.4em;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 1em;
-        }
-
-        .catalogue-scontainer {
-            margin: 40px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #2c3e50;
-            color: white;
-            font-size: 1.2em;
-        }
-
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        tr:focus-within {
-            background-color: #f1f1f1;
-            outline: 2px solid #2c3e50;
-        }
-
-        .card img:hover {
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .section-scontainer {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card {
-                width: 80%;
-            }
-        }
-
-        /* Accessibility focus styles */
-        .card:focus, table:focus {
-            outline: 2px solid #2c3e50;
-        }
-        .menu-btn {
-            display: block;
-            width: 200px;
-            margin: 30px auto;
-            text-align: center;
-            background-color: #e67e22;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .menu-btn:hover {
-            background-color: #d35400;;
-            transform: translateY(-5px)
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="scontainer">
@@ -145,39 +18,36 @@
                 <img src="{{ asset('images/s1.jpg') }}" alt="Massage Relaxant">
                 <h3>Massage Relaxant</h3>
                 <p>Un massage doux pour apaiser votre corps et votre esprit.</p>
-                <a href="#" class="btn">Réserver</a>
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                <button class="btn" onclick="toggleForm(1)">Réserver</button>
+                <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
+                    @csrf
                     <input type="number" name="produit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
+                    <button type="submit" class="btn">Confirmer</button>
                 </form>
             </div>
             <div class="card" tabindex="0">
                 <img src="{{ asset('images/s2.jpg') }}" alt="Soins du Visage">
                 <h3>Soins du Visage</h3>
                 <p>Un soin revitalisant pour une peau éclatante et hydratée.</p>
-                <a href="#" class="btn">Réserver</a>
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                <button class="btn" onclick="toggleForm(2)">Réserver</button>
+                <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
+                    @csrf
                     <input type="number" name="produit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
+                    <button type="submit" class="btn">Confirmer</button>
                 </form>
             </div>
             <div class="card" tabindex="0">
                 <img src="{{ asset('images/s3.jpg') }}" alt="Hammam & Sauna">
                 <h3>Hammam & Sauna</h3>
                 <p>Profitez de la chaleur pour une relaxation totale.</p>
-                <a href="#" class="btn">Réserver</a>
-                {{-- make the form popup when the button is clicked --}}
-
-                <form action="{{ route('tablePanier') }}" method="post" >@csrf
+                <button class="btn" onclick="toggleForm(3)">Réserver</button>
+                <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
+                    @csrf
                     <input type="number" name="produit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
-                    <button type="submit" class="btn"  >Confirmer</button>
+                    <button type="submit" class="btn">Confirmer</button>
                 </form>
             </div>
         </div>
@@ -241,7 +111,17 @@
                 </tr>
             </table>
         </div>
-        <a href="#" class="menu-btn">Reserver une seance</a>
+        <a href="#" class="menu-btn">Réserver une séance</a>
     </div>
+
+    <script>
+        // Fonction pour afficher/masquer le formulaire de réservation
+        function toggleForm(cardId) {
+            const forms = document.querySelectorAll('.reservation-form');
+            forms.forEach(form => form.classList.remove('active')); // Masquer tous les formulaires
+            const form = document.querySelector(`.card:nth-child(${cardId}) .reservation-form`);
+            form.classList.toggle('active'); // Afficher le formulaire correspondant
+        }
+    </script>
 </body>
 </html>

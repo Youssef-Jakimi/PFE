@@ -496,3 +496,12 @@ textarea.form-control {
         opacity: 1;
     }
 }
+.cart-icon {
+    font-size: 24px;
+    color: #e67e22;
+    margin-left: 1000px;
+}
+
+.cart-icon:hover {
+    color: #d35400;
+}

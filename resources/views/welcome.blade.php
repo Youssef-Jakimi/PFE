@@ -20,6 +20,7 @@
                     <a href="#services"><span data-hover="Services">Services</span></a>
                     <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
                 </div>
+                <div>  <a href="{{ route('panier') }}"class="cart-icon"> <i class="fas fa-shopping-cart"></i></a></div>
             </nav>
         </header>
     </div>
