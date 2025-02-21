@@ -122,7 +122,7 @@
         </div>
     </div>
 
-    <!-- Modal de réservation -->
+
     <div class="modal" id="bookingModal">
         <div class="modal-content">
             <h2 id="modalTitle" style="margin-bottom: 1.5rem;">Réservation</h2>
@@ -161,12 +161,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialiser la date minimum à aujourd'hui
+
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('dateD').min = today;
             document.getElementById('dateF').min = today;
 
-            // Gestionnaire d'événements pour les dates
             document.getElementById('dateD').addEventListener('change', updateDates);
             document.getElementById('dateF').addEventListener('change', updateDates);
         });

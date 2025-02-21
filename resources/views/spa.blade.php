@@ -118,9 +118,9 @@
         // Fonction pour afficher/masquer le formulaire de réservation
         function toggleForm(cardId) {
             const forms = document.querySelectorAll('.reservation-form');
-            forms.forEach(form => form.classList.remove('active')); // Masquer tous les formulaires
+            forms.forEach(form => form.classList.remove('active'));
             const form = document.querySelector(`.card:nth-child(${cardId}) .reservation-form`);
-            form.classList.toggle('active'); // Afficher le formulaire correspondant
+            form.classList.toggle('active');
         }
     </script>
 </body>

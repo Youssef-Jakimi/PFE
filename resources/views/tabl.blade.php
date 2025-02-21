@@ -72,11 +72,10 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // Validation de la date
         document.getElementById('date').addEventListener('change', function() {
             const selectedDate = new Date(this.value);
             const today = new Date();
-            today.setHours(0, 0, 0, 0); // Ignorer l'heure
+            today.setHours(0, 0, 0, 0);
 
             if (selectedDate < today) {
                 alert('Veuillez sélectionner une date valide (non passée).');
