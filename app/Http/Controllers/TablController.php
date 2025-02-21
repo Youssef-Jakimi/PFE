@@ -24,7 +24,7 @@ class TablController extends Controller
         $userID = Auth::user()->id;
         $panier = new panier();
         $panier->utilisateur_id=$userID;
-        $panier->produit_id=$request->input("produit");
+        $panier->produit_id=$request->input("tableProduit");
         $panier->Date_D=$request->input("date");
         $panier->save();
         return redirect("/Table");

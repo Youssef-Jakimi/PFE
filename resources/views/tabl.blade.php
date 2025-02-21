@@ -54,6 +54,7 @@
         <form action="{{ route('tablePanier') }}" method="post">
             @csrf
             <input type="number" name="produit" id="produit" hidden>
+            <input type="number" name="tableProduit" value="4" hidden>
             <input type="date" class="date" name="date" id="date" required>
             <button type="submit" class="btn">Confirmer</button>
             <button type="button" class="btn" onclick="closeForm()">Annuler</button>
