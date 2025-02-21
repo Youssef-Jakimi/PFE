@@ -21,7 +21,7 @@
                 <button class="btn" onclick="toggleForm(1)">Réserver</button>
                 <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
                     @csrf
-                    <input type="number" name="produit" value="5" hidden>
+                    <input type="number" name="tableSPAProduit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn">Confirmer</button>
                 </form>
@@ -33,7 +33,7 @@
                 <button class="btn" onclick="toggleForm(2)">Réserver</button>
                 <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
                     @csrf
-                    <input type="number" name="produit" value="5" hidden>
+                    <input type="number" name="tableSPAProduit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn">Confirmer</button>
                 </form>
@@ -45,7 +45,7 @@
                 <button class="btn" onclick="toggleForm(3)">Réserver</button>
                 <form action="{{ route('tablePanier') }}" method="post" class="reservation-form">
                     @csrf
-                    <input type="number" name="produit" value="5" hidden>
+                    <input type="number" name="tableSPAProduit" value="5" hidden>
                     <input type="date" class="date" name="date" required>
                     <button type="submit" class="btn">Confirmer</button>
                 </form>
