@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inscription</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/authlog.css') }}">
     <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
-        </div>
-        <h1>YR HOTELS</h1>
-    </header>
 <div class="login-container">
     <div class="auth-box bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">S'inscrire</h1>

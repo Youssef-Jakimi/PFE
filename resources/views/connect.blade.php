@@ -5,24 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connexion</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/authlog.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <header>
-            <div class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
-            </div>
-            <nav>
-                <div class="slidein section">
-                    <a href="/"><span data-hover="Accueil">Accueil</span></a>
-                    <a href="connect"><span data-hover="Se connecter">Se connecter</span></a>
-                    <a href="#services"><span data-hover="Services">Services</span></a>
-                    <a href="{{ route('contact') }}"><span data-hover="Contact">Contact</span></a>
-                </div>
-            </nav>
-        </header>
-    </div>
     <div class="login-container">
         <div class="login-box">
             <h1>Se connecter</h1>
