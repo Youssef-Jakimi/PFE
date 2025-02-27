@@ -15,8 +15,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Id Réservation</th>
-                    <th>Id Produit</th>
+                    <th>Réservation</th>
+                    <th>Produit</th>
                     <th>Prix Total</th>
                     <th>Date Début</th>
                     <th>Date Fin</th>

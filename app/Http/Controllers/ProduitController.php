@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use id;
+use App\Models\panier;
 use App\Models\facture;
 use App\Models\produit;
 use App\Models\reservation;
@@ -47,9 +49,21 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $panier = DB::table('paniers')->where("utilisateur_id",Auth::id())->get();
-        return view('panier')->with("paniers", $panier);
-    }
+
+        $panier = DB::table('paniers')
+        ->join('produits', 'paniers.produit_id', '=', 'produits.id')
+        ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
+        ->select('paniers.id as id ', 'categories.nom as name', 'produits.PR_CODE as ref', 'Prix_Total', 'Date_D', 'Date_F')
+        ->where("paniers.utilisateur_id","=",Auth::id())
+        ->get();
+
+
+        //$panier = panier::where('utilisateur_id', auth()->id())->get();  // Or whatever your query is
+
+        $total = $panier->sum('Prix_Total');  // Example of calculating the total price
+        
+        return view('panier', compact('panier', 'total'));
+        }
 
     /**
      * Show the form for creating a new resource.
