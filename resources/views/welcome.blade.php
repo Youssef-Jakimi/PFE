@@ -60,9 +60,15 @@
                 <a href="{{ route('contact') }}">Contact</a>
             </div>
             <div class="nav-actions">
+                @if (Auth::check())
+                    <a href="{{ route('index') }}" class="btn-login">Mon compte</a>
+                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                @else
                 <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
                 <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
                 <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                @endif
             </div>
         </nav>
     </header>

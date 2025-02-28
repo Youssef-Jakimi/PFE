@@ -47,7 +47,7 @@
                             <td><input type="text" value="{{ $detail->categorie }}" readonly></td>
                             <td><input type="text" value="{{ number_format($detail->Prix_Total, 2, ',', ' ') }} MAD" readonly></td>
                             <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_D)) }}" readonly></td>
-                            <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_F)) }}" readonly></td>
+                         {{-- <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_F)) }}" readonly></td> --}}
                         </tr>
                     @endforeach
                 </tbody>
