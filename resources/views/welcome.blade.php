@@ -44,16 +44,16 @@
                     <a href="{{ route('tabl') }}">Gastronomie</a>
                     <div class="dropdown-content">
                         <a href="{{ route('menu')}}">Restaurant Étoilé</a>
-                        <a href="#">Lounge & Bar</a>
-                        <a href="#">Service en chambre</a>
+                        <a href="{{ route('menu')}}">Lounge & Bar</a>
+                        <a href="{{ route('menu')}}">Service en chambre</a>
                     </div>
                 </div>
                 <div class="nav-dropdown">
                     <a href="{{ route('spa') }}">Spa & Bien-être</a>
                     <div class="dropdown-content">
-                        <a href="#">Massages</a>
-                        <a href="#">Soins du corps</a>
-                        <a href="#">Piscine & Jacuzzi</a>
+                        <a href="{{ route('spa') }}">Massages</a>
+                        <a href="{{ route('spa') }}">Soins du corps</a>
+                        <a href="{{ route('spa') }}">Piscine & Jacuzzi</a>
                     </div>
                 </div>
                 <a href="#">Destinations</a>
@@ -62,7 +62,7 @@
             <div class="nav-actions">
                 <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
                 <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-                <a href="#" class="btn-book">Réserver</a>
+                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
             </div>
         </nav>
     </header>
@@ -109,7 +109,7 @@
             <a href="{{ route('contact') }}">Contact</a>
             <a href="{{ route('index.connect') }}">Se connecter</a>
             <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i> Panier</a>
-            <a href="#" class="btn-mobile-book">Réserver maintenant</a>
+            <a href="{{ route('index.connect') }}" class="btn-mobile-book">Réserver maintenant</a>
         </div>
         <div class="sidebar-footer">
             <div class="social-icons">
@@ -131,8 +131,8 @@
                         <h1>Luxe, Calme et Volupté</h1>
                         <p>Vivez une expérience inoubliable dans nos hôtels 5 étoiles</p>
                         <div class="hero-buttons">
-                            <a href="#" class="btn btn-primary">Réserver</a>
-                            <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
+                            <a href="{{ route('chambre') }}" class="btn btn-primary">Réserver</a>
+                            <a href="{{ route('chambre') }}" class="btn btn-secondary">Découvrir nos services</a>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                         <p>Découvrez nos restaurants étoilés et leurs chefs renommés</p>
                         <div class="hero-buttons">
                             <a href="{{ route('tabl') }}" class="btn btn-primary">Nos restaurants</a>
-                            <a href="#" class="btn btn-secondary">Réserver une table</a>
+                            <a href="{{ route('tabl') }}" class="btn btn-secondary">Réserver une table</a>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                         <p>Nos spas vous offrent un moment de relaxation ultime</p>
                         <div class="hero-buttons">
                             <a href="{{ route('spa') }}" class="btn btn-primary">Découvrir le spa</a>
-                            <a href="#" class="btn btn-secondary">Réserver un soin</a>
+                            <a href="{{ route('spa') }}" class="btn btn-secondary">Réserver un soin</a>
                         </div>
                     </div>
                 </div>

@@ -619,8 +619,8 @@ section {
 }
 
 .about-image img {
-    position: relative;
-    z-index: 2;
+    position:  relative; ;
+    z-index: 5;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
