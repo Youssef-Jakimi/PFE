@@ -21,7 +21,7 @@
             </div>
             <div class="contact-info">
                 <a href="tel:+212 614-879517"><i class="fas fa-phone"></i> +212 614 87 95 17</a>
-                <a href="tel:+212 718-041286"><i class="fas fa-phone"></i> +212 718 04 12 86"</a>
+                <a href="tel:+212 718-041286"><i class="fas fa-phone"></i> +212 718 04 12 86</a>
                 <a href="mailto:contact@yr-hotels.com"><i class="fas fa-envelope"></i> contact@yr-hotels.com</a>
             </div>
         </div>
@@ -276,7 +276,7 @@
             <p class="subtitle">Des adresses prestigieuses dans le monde entier</p>
             <div class="destination-gallery">
                 <div class="destination-card">
-                    <img src="{{ asset('images/Fes.jpg') }}" alt="YR HOTELS Fes">
+                    <img src="{{ asset('images/Fes.jpeg') }}" alt="YR HOTELS Fes">
                     <div class="destination-overlay">
                         <h3>Fes</h3>
                         <p>Maroc</p>
@@ -284,7 +284,7 @@
                     </div>
                 </div>
                 <div class="destination-card">
-                    <img src="{{ asset('images/dubai.jpg') }}" alt="YR HOTELS Dubai">
+                    <img src="{{ asset('images/Kech.jpeg') }}" alt="YR HOTELS Marrakech">
                     <div class="destination-overlay">
                         <h3>Marrakech</h3>
                         <p>Maroc</p>
@@ -292,7 +292,7 @@
                     </div>
                 </div>
                 <div class="destination-card">
-                    <img src="{{ asset('images/tokyo.jpg') }}" alt="YR HOTELS Tokyo">
+                    <img src="{{ asset('images/Tanger.jpeg') }}" alt="YR HOTELS Tanger">
                     <div class="destination-overlay">
                         <h3>Tanger</h3>
                         <p>Maroc</p>
