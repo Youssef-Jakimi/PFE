@@ -12,6 +12,25 @@
     <div class="container">
         <h1>Réservation de Table</h1>
 
+
+
+        {{-- //affiche les tables dynamiquement  --}}
+        <div class="tables-items">
+            @foreach($tables as $table)
+                <div class="cart-item">
+                    <div>
+                        <div class="item-detail"><span>Produit:</span> {{ $table->PR_CODE }}</div>
+                        <div class="item-detail"><span>Capacité :</span> {{ $table->PR_PERSONNE }} personne</div>
+                        <div class="item-detail"><span>PRIX :</span> {{ $table->PR_PRIX }} MAD</div>
+                    </div>
+                    
+                </div>
+            @endforeach
+        </div>
+
+
+
+
         <!-- Table 1 -->
         <div class="table">
             <img src="{{ asset('images/t1.jpg') }}" alt="Table rendez-vous">

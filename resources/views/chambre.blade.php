@@ -15,6 +15,20 @@
             <p>Découvrez nos chambres luxueuses et profitez d'un séjour inoubliable</p>
         </header>
 
+        {{-- //affiche les chambres dynamiquement  --}}
+        <div class="tables-items">
+            @foreach($chambres as $chambre)
+                <div class="cart-item">
+                    <div>
+                        <div class="item-detail"><span>Produit:</span> {{ $chambre->PR_CODE }}</div>
+                        <div class="item-detail"><span>Capacité :</span> {{ $chambre->PR_PERSONNE }} personne</div>
+                        <div class="item-detail"><span>PRIX :</span> {{ $chambre->PR_PRIX }} MAD</div>
+                    </div>
+                    
+                </div>
+            @endforeach
+        </div>
+
         <div class="rooms-grid">
             <!-- Chambre 1 -->
             <div class="chambre">

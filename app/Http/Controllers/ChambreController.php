@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 use App\Models\panier;
 use App\Models\produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ChambreController extends Controller
 {
     public function index()
-    {
-       
-        if(Auth::id()!=NULL)
-        return view('chambre')->with('userID', Auth::user()->id);
-        else
-        return view('chambre');
+    {           
+        
+       $chambre = DB::table('produits')->where('PR_CATEGORIE','=',1)->get();
+        return view('chambre')->with('chambres', $chambre);
+
     }
     public function chambrePanier(request $request){
 

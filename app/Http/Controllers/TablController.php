@@ -5,17 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\panier;
 use App\Models\produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class TablController extends Controller
 {
     public function index()
-    {
-       
-        if(Auth::id()!=NULL)
-        return view('tabl')->with('userID', Auth::user()->id);
-        else
-        return view('tabl');
+    {           
+        
+       $table = DB::table('produits')->where('PR_CATEGORIE','=',2)->get();
+        return view('tabl')->with('tables', $table);
     }
     public function tablePanier(request $request){
         $request->validate([
@@ -32,6 +31,6 @@ class TablController extends Controller
         return redirect("/panier");
         }
         else
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return redirect()->route('index.connect')->with('not_connected', 'Veuiller se connecter !');
     }
 }

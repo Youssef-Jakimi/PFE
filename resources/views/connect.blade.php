@@ -11,6 +11,11 @@
 <body>
     <div class="login-container">
         <div class="login-box">
+            @if(session('not_connected'))
+        <div class="alert alert-failed">
+            {{ session('not_connected') }}
+        </div>
+         @endif
             <h1>Se connecter</h1>
             <form class="login-form" action="{{ route('ajouter.login') }}" method="post">
                 @csrf

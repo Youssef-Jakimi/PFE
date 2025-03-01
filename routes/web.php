@@ -12,7 +12,7 @@ use App\Http\Controllers\ProduitController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("welcome");
 
 Route::get('/auth', function () {
     return view('Auth');
@@ -37,6 +37,8 @@ Route::get('/connect', [App\Http\Controllers\UtilisateurController::class, 'inde
 
 // Route pour traiter la soumission du formulaire de connexion
 Route::post('/connect', [App\Http\Controllers\UtilisateurController::class, 'login'])->name('ajouter.login');
+
+Route::get('/logout', [App\Http\Controllers\UtilisateurController::class, 'disconnect'])->name('disconnect');
 
 // Route pour afficher les détails de réservation
 Route::get('/Detailsreservation', [App\Http\Controllers\DetailReservationController::class, 'index'])->name("index");
@@ -81,3 +83,5 @@ Route::get('/spa', [SpaController::class, 'index'])->name('spa');
 
 Route::get('/panier', [ProduitController::class, 'index'])->name('panier');
 Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('confirmerCommande');
+
+Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche');

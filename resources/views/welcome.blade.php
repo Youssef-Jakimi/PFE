@@ -61,7 +61,7 @@
             </div>
             <div class="nav-actions">
                 @if (Auth::check())
-                    <a href="{{ route('index') }}" class="btn-login">Mon compte</a>
+                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
                     <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
                 <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                 @else
@@ -113,10 +113,12 @@
             </div>
             <a href="#">Destinations</a>
             <a href="{{ route('contact') }}">Contact</a>
-            <a href="{{ route('index.connect') }}">Se connecter</a>
-            <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i> Panier</a>
-            <a href="{{ route('index.connect') }}" class="btn-mobile-book">Réserver maintenant</a>
-        </div>
+            @if (Auth::check())
+            <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+            <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+            @endif
+            </div>
         <div class="sidebar-footer">
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -126,7 +128,11 @@
             <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
         </div>
     </nav>
-
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <!-- Contenu principal -->
     <main class="main-content">
         <section class="hero">
@@ -177,7 +183,7 @@
         </section>
 
         <section class="booking-bar">
-            <form class="booking-form">
+            <form class="booking-form" method="POST" action="{{ route('recherche') }}"> @csrf
                 <div class="form-group">
                     <label for="destination">Destination</label>
                     <select id="destination">
@@ -189,22 +195,22 @@
                 </div>
                 <div class="form-group">
                     <label for="checkin">Arrivée</label>
-                    <input type="date" id="checkin">
+                    <input type="date" name="dateD" id="checkin">
                 </div>
                 <div class="form-group">
                     <label for="checkout">Départ</label>
-                    <input type="date" id="checkout">
+                    <input type="date" name="dateF" id="checkout">
                 </div>
                 <div class="form-group">
                     <label for="guests">Voyageurs</label>
                     <div class="guests-select">
-                        <select id="guests">
+                        <select name="adulte" id="guests">
                             <option value="1">1 adulte</option>
                             <option value="2" selected>2 adultes</option>
                             <option value="3">3 adultes</option>
                             <option value="4">4 adultes</option>
                         </select>
-                        <select id="children">
+                        <select name="enfant" id="children">
                             <option value="0" selected>0 enfant</option>
                             <option value="1">1 enfant</option>
                             <option value="2">2 enfants</option>

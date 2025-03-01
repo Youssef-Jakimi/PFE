@@ -4,7 +4,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -23,10 +25,11 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'message' => 'required|string',
         ]);
-
-        // Process the data (e.g., send an email, save to database, etc.)
-        // Example: Send an email
-        // Mail::to('admin@example.com')->send(new ContactFormMail($request->all()));
+        $mail = new mail();
+        $mail->email=$request->input('email');
+        $mail->message=$request->input('message');
+        $mail->Utilisateur=Auth::id();
+        $mail->save();
 
         // Redirect back with a success message
         return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');

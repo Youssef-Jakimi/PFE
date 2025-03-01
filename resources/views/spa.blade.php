@@ -13,6 +13,21 @@
         <h1>Réservez votre Expérience Spa</h1>
 
         <h2>Nos Services</h2>
+
+{{-- //affiche les spas dynamiquement  --}}
+<div class="tables-items">
+    @foreach($spas as $spa)
+        <div class="cart-item">
+            <div>
+                <div class="item-detail"><span>Produit:</span> {{ $spa->PR_CODE }}</div>
+                <div class="item-detail"><span>Capacité :</span> {{ $spa->PR_PERSONNE }} personne</div>
+                <div class="item-detail"><span>PRIX :</span> {{ $spa->PR_PRIX }} MAD</div>
+            </div>
+            
+        </div>
+    @endforeach
+</div>
+
         <div class="section-scontainer">
             <div class="card" tabindex="0">
                 <img src="{{ asset('images/s1.jpg') }}" alt="Massage Relaxant">

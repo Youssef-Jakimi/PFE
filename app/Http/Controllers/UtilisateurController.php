@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use session;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class UtilisateurController extends Controller
             if ($user->ADMIN) {
                 return redirect('/admin')->with('success', 'Connexion réussie en tant qu\'administrateur.');
             } else {
-                return redirect('/Table')->with('success', 'Connexion réussie.');
+                return redirect()->route('welcome')->with('success', 'Connexion aves success!');
             }
         }
 
@@ -52,4 +53,12 @@ class UtilisateurController extends Controller
 
         return redirect('/connect')->with('success', 'Utilisateur enregistré avec succès.');
     }
+
+    public function disconnect(Request $request){
+        
+        session()->invalidate();
+        auth::logout();
+        //session()->regenerateToken();
+        return view('welcome');
+    }        
 }
