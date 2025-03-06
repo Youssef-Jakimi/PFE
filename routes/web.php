@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TablController;
 use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
+
 
 
 Route::get('/', function () {
@@ -85,3 +88,13 @@ Route::get('/panier', [ProduitController::class, 'index'])->name('panier');
 Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('confirmerCommande');
 
 Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche');
+
+
+
+use App\Http\Controllers\GPTController;
+
+Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
+Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
+
+
+

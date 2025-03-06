@@ -139,7 +139,7 @@
             <div class="hero-slider">
                 <div class="slide active">
                     <div class="overlay"></div>
-                    <div class="hero-content">
+                    <div class="hero-content"><br><br><br><br><br><br>
                         <h1>Luxe, Calme et Volupté</h1>
                         <p>Vivez une expérience inoubliable dans nos hôtels 5 étoiles</p>
                         <div class="hero-buttons">
@@ -150,7 +150,7 @@
                 </div>
                 <div class="slide">
                     <div class="overlay"></div>
-                    <div class="hero-content">
+                    <div class="hero-content"><br><br><br><br><br><br>
                         <h1>Une Gastronomie d'Exception</h1>
                         <p>Découvrez nos restaurants étoilés et leurs chefs renommés</p>
                         <div class="hero-buttons">
@@ -162,7 +162,7 @@
                 <div class="slide">
                     <div class="overlay"></div>
                     <div class="hero-content">
-                        <h1>Détente et Bien-être</h1>
+                        <h1>Détente et Bien-être</h1><br><br><br><br><br><br>
                         <p>Nos spas vous offrent un moment de relaxation ultime</p>
                         <div class="hero-buttons">
                             <a href="{{ route('spa') }}" class="btn btn-primary">Découvrir le spa</a>
