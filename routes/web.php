@@ -90,11 +90,7 @@ Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('c
 Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche');
 
 
-
 use App\Http\Controllers\GPTController;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
-
-
-

@@ -13,33 +13,24 @@ class GPTController extends Controller
         $this->gptService = $gptService;
     }
 
+    // GET route to show the form
     public function showForm()
     {
-        // Initialize the chat history as an empty array
-        $chatHistory = session('chat_history', []);
-        return view('gpt.form', ['chatHistory' => $chatHistory]);
+        return view('gpt.form');  // Render the initial chat form
     }
 
+    // POST route to process user message and get GPT response
     public function getResponse(Request $request)
     {
+        // Get the user's message from the request
         $userInput = $request->input('query');
 
-        // Retrieve the chat history stored in the session
-        $chatHistory = session('chat_history', []);
-
-        // Add the user query to the chat history
-        $chatHistory[] = ['role' => 'user', 'content' => $userInput];
-
-        // Get GPT response
+        // Get GPT's response via the service class
         $gptResponse = $this->gptService->generateResponse($userInput);
 
-        // Add GPT's response to the chat history
-        $chatHistory[] = ['role' => 'assistant', 'content' => $gptResponse];
-
-        // Store the updated chat history back to the session
-        session(['chat_history' => $chatHistory]);
-
-        return view('gpt.form', ['chatHistory' => $chatHistory]);
+        // Return response as JSON to send it back to the frontend
+        return response()->json(['response' => $gptResponse]);
     }
 }
+
 
