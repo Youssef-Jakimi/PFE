@@ -26,8 +26,8 @@ class ChambreController extends Controller
         $userID = Auth::user()->id;
         $panier = new panier();
         $panier->utilisateur_id=$userID;
-        $panier->produit_id=$request->input("produit");
-        $panier->Prix_Total = produit::where('id', $request->input('produit'))->value('PR_PRIX');
+        $panier->produit_id=$request->input("produit_id");
+        $panier->Prix_Total = produit::where('id', $request->input('produit_id'))->value('PR_PRIX');
         $panier->Date_D=$request->input("dateD");
         $panier->Date_F=$request->input("dateF");
         $panier->save();

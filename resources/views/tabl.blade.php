@@ -14,7 +14,7 @@
 
 
 
-        {{-- //affiche les tables dynamiquement  --}}
+        {{-- //affiche les tables dynamiquement  
         <div class="tables-items">
             @foreach($tables as $table)
                 <div class="cart-item">
@@ -27,7 +27,7 @@
                 </div>
             @endforeach
         </div>
-
+--}}
 
 
 

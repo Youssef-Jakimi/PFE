@@ -14,7 +14,7 @@
 
         <h2>Nos Services</h2>
 
-        {{-- Affichage des spas dynamiquement comme dans le code original --}}
+        {{-- Affichage des spas dynamiquement comme dans le code original 
         <div class="tables-items">
             @foreach($spas as $spa)
                 <div class="cart-item">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div>--}}
 
         {{-- Services avec cards dynamiques qui utilisent les données existantes --}}
         <div class="section-scontainer">
