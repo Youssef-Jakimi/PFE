@@ -1145,7 +1145,220 @@ footer {
         margin: 0 0.75rem;
     }
 }
+/* Chat Bubble Styles */
+.chat-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #b8860b, #d4a017);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
 
+.chat-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Chat Modal Styles */
+.chat-modal {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-width: 90vw;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+.chat-modal.active {
+    display: block;
+}
+
+.chat-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    max-height: 70vh;
+}
+
+.chat-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(45deg, #b8860b, #d4a017);
+    color: white;
+}
+
+.chat-modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.close-chat-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-chat-btn:hover {
+    transform: scale(1.2);
+}
+
+.chat-container {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-radius: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    animation: fadeIn 0.4s ease-in;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.user {
+    background: linear-gradient(45deg, #b8860b, #d4a017);
+    color: white;
+    align-self: flex-end;
+}
+
+.assistant {
+    background: linear-gradient(45deg, #d4af37, #e6c34a);
+    color: white;
+    align-self: flex-start;
+}
+
+.message strong {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.message p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.chat-form {
+    display: flex;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+.chat-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.chat-form button {
+    padding: 10px 15px;
+    background: linear-gradient(45deg, #b8860b, #d4a017);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.chat-form button:hover {
+    background: linear-gradient(45deg, #d4af37, #e6c34a);
+}
+
+.typing {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-style: italic;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.typing::after {
+    content: 'En train d\'écrire...';
+    animation: blink 1s infinite;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #b8860b;
+    border-radius: 3px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background-color: #f8f9fa;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+@media (max-width: 768px) {
+    .chat-bubble {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .chat-modal {
+        bottom: 80px;
+        right: 10px;
+        width: calc(100vw - 20px);
+        max-width: none;
+    }
+}
 /* Animations */
 @keyframes fadeIn {
     from {

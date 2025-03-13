@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="YR HOTELS - Vivez une expérience de luxe inoubliable dans nos hôtels 5 étoiles présents dans le monde entier">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Laravel CSRF token -->
     <title>YR HOTELS - Luxe & Élégance</title>
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <!-- Barre de navigation fixe pour desktop -->
+    <!-- Header -->
     <header class="desktop-nav">
         <div class="top-bar">
             <div class="languages">
@@ -43,9 +45,9 @@
                 <div class="nav-dropdown">
                     <a href="{{ route('tabl') }}">Gastronomie</a>
                     <div class="dropdown-content">
-                        <a href="{{ route('menu')}}">Restaurant Étoilé</a>
-                        <a href="{{ route('menu')}}">Lounge & Bar</a>
-                        <a href="{{ route('menu')}}">Service en chambre</a>
+                        <a href="{{ route('menu') }}">Restaurant Étoilé</a>
+                        <a href="{{ route('menu') }}">Lounge & Bar</a>
+                        <a href="{{ route('menu') }}">Service en chambre</a>
                     </div>
                 </div>
                 <div class="nav-dropdown">
@@ -63,22 +65,22 @@
                 @if (Auth::check())
                     <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
                     <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                 @else
-                <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
-                <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                 @endif
             </div>
         </nav>
     </header>
 
-    <!-- Bouton pour afficher/masquer la barre latérale (mobile) -->
+    <!-- Mobile Sidebar Toggle -->
     <button id="sidebarToggle" class="sidebar-toggle">
         <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Barre de navigation latérale (mobile) -->
+    <!-- Mobile Sidebar -->
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
@@ -114,11 +116,11 @@
             <a href="#">Destinations</a>
             <a href="{{ route('contact') }}">Contact</a>
             @if (Auth::check())
-            <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
-            <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
                 <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
             @endif
-            </div>
+        </div>
         <div class="sidebar-footer">
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -128,12 +130,14 @@
             <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
         </div>
     </nav>
+
     @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
     @endif
-    <!-- Contenu principal -->
+
+    <!-- Main Content -->
     <main class="main-content">
         <section class="hero">
             <div class="hero-slider">
@@ -390,6 +394,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-column">
@@ -435,7 +440,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 YR HOTELS. Tous droits réservés.</p>
+            <p>© 2024 YR HOTELS. Tous droits réservés.</p>
             <div class="footer-links">
                 <a href="#">Mentions légales</a>
                 <a href="#">Politique de confidentialité</a>
@@ -445,13 +450,37 @@
         </div>
     </footer>
 
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" id="chatBubble">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h3>Chat avec RY-BOT</h3>
+                <button id="closeChatBtn" class="close-chat-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-container" id="chat-container">
+                <div class="message assistant">
+                    <strong>RY-BOT:</strong>
+                    <p>Bonjour ! Je suis RY-BOT, votre compagnon pour explorer YR HOTELS. Comment puis-je vous aider aujourd’hui ?</p>
+                </div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="user-input" placeholder="Posez votre question..." required>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Menu mobile
+            // Mobile Menu
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.getElementById('sidebar');
             const closeBtn = document.getElementById('closeBtn');
-            const mainContent = document.querySelector('.main-content');
 
             sidebarToggle.addEventListener('click', function() {
                 sidebar.classList.add('active');
@@ -463,44 +492,30 @@
                 document.body.style.overflow = 'auto';
             });
 
-            // Sous-menus mobile
             const dropdownLinks = document.querySelectorAll('.services-dropdown > a');
             dropdownLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const submenuId = this.id.replace('Link', 'SubMenu');
                     const submenu = document.getElementById(submenuId);
-                    if (submenu.classList.contains('active')) {
-                        submenu.classList.remove('active');
-                    } else {
-                        // Fermer tous les sous-menus
-                        document.querySelectorAll('.sub-menu').forEach(menu => {
-                            menu.classList.remove('active');
-                        });
-                        // Ouvrir le sous-menu cliqué
-                        submenu.classList.add('active');
-                    }
+                    submenu.classList.toggle('active');
                 });
             });
 
-            // Slider héros
+            // Hero Slider
             let currentSlide = 0;
             const slides = document.querySelectorAll('.hero-slider .slide');
             const indicators = document.querySelectorAll('.slide-indicators .indicator');
             const totalSlides = slides.length;
 
             function showSlide(index) {
-                // Masquer toutes les slides
                 slides.forEach(slide => slide.classList.remove('active'));
                 indicators.forEach(indicator => indicator.classList.remove('active'));
-
-                // Afficher la slide demandée
                 slides[index].classList.add('active');
                 indicators[index].classList.add('active');
                 currentSlide = index;
             }
 
-            // Contrôles du slider
             document.querySelector('.prev-slide').addEventListener('click', function() {
                 showSlide((currentSlide - 1 + totalSlides) % totalSlides);
             });
@@ -509,19 +524,17 @@
                 showSlide((currentSlide + 1) % totalSlides);
             });
 
-            // Cliquer sur les indicateurs
             indicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', function() {
                     showSlide(index);
                 });
             });
 
-            // Défilement automatique
             setInterval(function() {
                 showSlide((currentSlide + 1) % totalSlides);
             }, 5000);
 
-            // Slider témoignages
+            // Testimonial Slider
             let currentTestimonial = 0;
             const testimonials = document.querySelectorAll('.testimonial');
             const testimonialIndicators = document.querySelectorAll('.testimonial-indicators .indicator');
@@ -530,7 +543,6 @@
             function showTestimonial(index) {
                 testimonials.forEach(testimonial => testimonial.classList.remove('active'));
                 testimonialIndicators.forEach(indicator => indicator.classList.remove('active'));
-
                 testimonials[index].classList.add('active');
                 testimonialIndicators[index].classList.add('active');
                 currentTestimonial = index;
@@ -549,6 +561,88 @@
                     showTestimonial(index);
                 });
             });
+
+            // Chat Functionality
+            const chatBubble = document.getElementById('chatBubble');
+            const chatModal = document.getElementById('chatModal');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatContainer = document.getElementById('chat-container');
+            const chatForm = document.getElementById('chat-form');
+            const userInput = document.getElementById('user-input');
+
+            let chatHistory = JSON.parse(sessionStorage.getItem('chatHistory')) || [
+                { role: 'assistant', content: 'Bonjour ! Je suis RY-BOT, votre compagnon pour explorer YR HOTELS. Comment puis-je vous aider aujourd’hui ?' }
+            ];
+
+            function renderChat() {
+                chatContainer.innerHTML = '';
+                chatHistory.forEach((message) => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', message.role);
+                    messageDiv.innerHTML = `<strong>${message.role === 'user' ? 'Vous' : 'RY-BOT'}:</strong><p>${message.content}</p>`;
+                    chatContainer.appendChild(messageDiv);
+                });
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            chatBubble.addEventListener('click', function() {
+                chatModal.classList.add('active');
+                renderChat();
+            });
+
+            closeChatBtn.addEventListener('click', function() {
+                chatModal.classList.remove('active');
+            });
+
+            async function sendMessageToBackend(userMessage) {
+                try {
+                    const response = await fetch("{{ route('gpt.response') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                        },
+                        body: JSON.stringify({ query: userMessage })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Échec de la requête à l’API');
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    return { response: "Désolé, je n’ai pas pu traiter votre demande. Veuillez réessayer." };
+                }
+            }
+
+            chatForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                const userMessage = userInput.value.trim();
+                if (!userMessage) return;
+
+                chatHistory.push({ role: 'user', content: userMessage });
+                sessionStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+                renderChat();
+
+                userInput.value = '';
+
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('message', 'assistant', 'typing');
+                chatContainer.appendChild(typingDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+
+                const data = await sendMessageToBackend(userMessage);
+
+                typingDiv.remove();
+
+                chatHistory.push({ role: 'assistant', content: data.response });
+                sessionStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+                renderChat();
+            });
+
+            renderChat();
         });
     </script>
 </body>
