@@ -3,73 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard Admin - YR HOTELS</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <title>Admin Dashboard</title>
+    <!-- Inclure Bootstrap CSS (optionnel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Dashboard Admin</h1>
-
-        <div class="statistics">
-            <p>Nombre total de réservations : {{ $reservationsCount }}</p>
-            <p>Nombre total d'utilisateurs : {{ $usersCount }}</p>
+        <h1>Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reservations</h5>
+                        <p class="card-text">{{ $reservations }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Produits</h5>
+                        <p class="card-text">{{ $produits }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Utilisateurs</h5>
+                        <p class="card-text">{{ $utilisateurs }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Chiffre d'affaires</h5>
+                        <p class="card-text">{{ $factures }} DH</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="charts">
-            <!-- Graphique des réservations par mois -->
-            <canvas id="reservationsChart"></canvas>
-        </div>
+        <canvas id="reservationsChart" width="400" height="200"></canvas>
     </div>
 
+    <!-- Inclure Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Données du graphique des réservations par mois
-        var reservationsByMonth = @json($reservationsByMonth);
-
-        // Données pour l'affichage du graphique
-        var months = reservationsByMonth.map(item => item.month);
-        var counts = reservationsByMonth.map(item => item.count);
-
-        // Création du graphique
         var ctx = document.getElementById('reservationsChart').getContext('2d');
-        var reservationsChart = new Chart(ctx, {
-            type: 'line', // Type de graphique (vous pouvez changer ce type)
+        var myChart = new Chart(ctx, {
+            type: 'bar', // ou 'line', 'pie', etc.
             data: {
-                labels: months, // Mois
+                labels: ['Reservations', 'Produits', 'Utilisateurs', 'Chiffre d\'affaires'],
                 datasets: [{
-                    label: 'Réservations',
-                    data: counts, // Compte des réservations
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    fill: false,
+                    label: '# of Votes',
+                    data: [{{ $reservations }}, {{ $produits }}, {{ $utilisateurs }}, {{ $factures }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
                 }]
             },
             options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return tooltipItem.raw + ' réservations';
-                            }
-                        }
-                    }
-                },
                 scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Mois'
-                        }
-                    },
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Nombre de réservations'
-                        }
+                        beginAtZero: true
                     }
                 }
             }

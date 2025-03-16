@@ -10,7 +10,7 @@ use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController ;
 
 
 
@@ -95,9 +95,11 @@ use App\Http\Controllers\GPTController;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/check-env', function() {
     dd(env('OPENAI_API_KEY'), env('OPENAI_API_URL'));
 });
 
+
+
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
