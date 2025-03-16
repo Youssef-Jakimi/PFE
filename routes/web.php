@@ -95,12 +95,9 @@ use App\Http\Controllers\GPTController;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
-<<<<<<< HEAD
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-=======
-
 
 Route::get('/check-env', function() {
     dd(env('OPENAI_API_KEY'), env('OPENAI_API_URL'));
 });
->>>>>>> 3688699bbfd930614424f6b673225a0942772cd6
+
