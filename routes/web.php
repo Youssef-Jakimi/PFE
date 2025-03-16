@@ -10,6 +10,7 @@ use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -94,3 +95,4 @@ use App\Http\Controllers\GPTController;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
