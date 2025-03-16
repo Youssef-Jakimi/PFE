@@ -11,7 +11,6 @@ class GPTService
 
     public function __construct()
     {
-        
         $this->apiKey = env('OPENAI_API_KEY');
         $this->apiUrl = env('OPENAI_API_URL');
 
@@ -23,7 +22,7 @@ class GPTService
             'Authorization' => 'Bearer ' . $this->apiKey,
             'Content-Type' => 'application/json',
         ])->post($this->apiUrl, [
-            'model' => 'gpt-4o-mini',  // Specify the model (GPT-4o Mini)
+            'model' => 'ft:gpt-4o-mini-2024-07-18:jkgamer::BBktcytg',  // Specify the model (GPT-4o Mini)
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $userInput],
