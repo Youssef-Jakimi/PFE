@@ -16,6 +16,11 @@ class MenuController extends Controller
         $start = $request->input("dateD");
         $end = $request->input("dateF");
         $personne = $request->input("adulte") + $request->input("enfant");
+        
+        $request->validate([
+            'dateD' => ['required', 'date', 'after:today'],
+            'dateF' => ['required', 'date', 'after:dateD'],
+        ]);
 
     // Fetch available products (products that are not booked in the given period)
     $availableProducts = DB::table('produits')

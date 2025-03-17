@@ -199,22 +199,22 @@
                 </div>
                 <div class="form-group">
                     <label for="checkin">Arrivée</label>
-                    <input type="date" name="dateD" id="checkin">
+                    <input type="date" name="dateD" id="checkin" required>
                 </div>
                 <div class="form-group">
                     <label for="checkout">Départ</label>
-                    <input type="date" name="dateF" id="checkout">
+                    <input type="date" name="dateF" id="checkout" required>
                 </div>
                 <div class="form-group">
                     <label for="guests">Voyageurs</label>
                     <div class="guests-select">
-                        <select name="adulte" id="guests">
+                        <select name="adulte" id="guests" required>
                             <option value="1">1 adulte</option>
                             <option value="2" selected>2 adultes</option>
                             <option value="3">3 adultes</option>
                             <option value="4">4 adultes</option>
                         </select>
-                        <select name="enfant" id="children">
+                        <select name="enfant" id="children" >
                             <option value="0" selected>0 enfant</option>
                             <option value="1">1 enfant</option>
                             <option value="2">2 enfants</option>
