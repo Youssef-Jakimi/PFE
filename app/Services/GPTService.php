@@ -22,7 +22,7 @@ class GPTService
             'Authorization' => 'Bearer ' . $this->apiKey,
             'Content-Type' => 'application/json',
         ])->post($this->apiUrl, [
-            'model' => 'ft:gpt-4o-mini-2024-07-18:jkgamer::BBktcytg',  // Specify the model (GPT-4o Mini)
+            'model' => 'ft:gpt-4o-mini-2024-07-18:jkgamer::BCSCKwgT:ckpt-step-8',  // Specify the model (GPT-4o Mini)
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $userInput],

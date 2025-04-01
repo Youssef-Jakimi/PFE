@@ -9,6 +9,11 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
+        
+
+        if(auth()->user()->ADMIN != TRUE) {
+            return redirect()->route('welcome');
+        }
         // Données principales
         $reservations = DB::table('reservations')->count();
         $produits = DB::table('produits')->count();

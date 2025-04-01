@@ -26,11 +26,9 @@ class UtilisateurController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = Auth::user();
-            if ($user->ADMIN) {
-                return redirect('/admin')->with('success', 'Connexion réussie en tant qu\'administrateur.');
-            } else {
+            
                 return redirect()->route('welcome')->with('success', 'Connexion aves success!');
-            }
+            
         }
 
         return back()->withErrors(['CIN' => 'CIN ou mot de passe incorrect.'])->withInput();

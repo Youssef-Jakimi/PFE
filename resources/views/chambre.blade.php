@@ -7,8 +7,78 @@
     <link rel="stylesheet" href="{{ asset('css/chambre.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
+    <header class="desktop-nav">
+        <div class="top-bar">
+            <div class="languages">
+                <a href="#" class="active">FR</a>
+                <a href="#">EN</a>
+            </div>
+            <div class="contact-info">
+                <a href="tel:+212 614-879517"><i class="fas fa-phone"></i> +212 614 87 95 17</a>
+                <a href="tel:+212 718-041286"><i class="fas fa-phone"></i> +212 718 04 12 86</a>
+                <a href="mailto:contact@yr-hotels.com"><i class="fas fa-envelope"></i> contact@yr-hotels.com</a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active">Accueil</a>
+                <div class="nav-dropdown">
+                    <a href="{{ route('chambre') }}">Chambres & Suites</a>
+                    <div class="dropdown-content">
+                        <a href="#">Suite Présidentielle</a>
+                        <a href="#">Suite Royale</a>
+                        <a href="#">Chambre Deluxe</a>
+                        <a href="#">Chambre Standard</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="{{ route('tabl') }}">Gastronomie</a>
+                    <div class="dropdown-content">
+                        <a href="{{ route('menu') }}">Restaurant Étoilé</a>
+                        <a href="{{ route('menu') }}">Lounge & Bar</a>
+                        <a href="{{ route('menu') }}">Service en chambre</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="{{ route('spa') }}">Spa & Bien-être</a>
+                    <div class="dropdown-content">
+                        <a href="{{ route('spa') }}">Massages</a>
+                        <a href="{{ route('spa') }}">Soins du corps</a>
+                        <a href="{{ route('spa') }}">Piscine & Jacuzzi</a>
+                    </div>
+                </div>
+                <a href="#">Destinations</a>
+                <a href="{{ route('contact') }}">Contact</a>
+            </div>
+            <div class="nav-actions">
+                @if (Auth::check())
+                    @if (Auth::user()->ADMIN == TRUE)
+                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                    <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
+                    @else
+                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    @endif
+                @else
+                    <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                @endif
+            </div>
+        </nav>
+    </header>
     <div class="container">
         <header class="header">
             <h1>Réservation de Chambres</h1>

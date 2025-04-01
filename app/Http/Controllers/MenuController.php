@@ -37,7 +37,7 @@ class MenuController extends Controller
         })
         ->whereNull('detail_reservations.produit_id') // Ensures that the product is not booked
         ->where("PR_PERSONNE",">=",$personne)
-        ->get('produits.id'); // Return relevant product fields
+        ->get('*'); // Return relevant product fields
 
     return response()->json($availableProducts);
 

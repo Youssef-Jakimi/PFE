@@ -63,9 +63,14 @@
             </div>
             <div class="nav-actions">
                 @if (Auth::check())
+                    @if (Auth::user()->ADMIN == TRUE)
+                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                    <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
+                    @else
                     <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
                     <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
                     <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    @endif
                 @else
                     <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
                     <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
@@ -114,6 +119,8 @@
                 </div>
             </div>
             <a href="#">Destinations</a>
+            <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+
             <a href="{{ route('contact') }}">Contact</a>
             @if (Auth::check())
                 <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
