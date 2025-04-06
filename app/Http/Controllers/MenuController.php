@@ -19,7 +19,6 @@ class MenuController extends Controller
         
         $request->validate([
             'dateD' => ['required', 'date', 'after:today'],
-            'dateF' => ['required', 'date', 'after:dateD'],
         ]);
 
     // Fetch available products (products that are not booked in the given period)
@@ -30,17 +29,15 @@ class MenuController extends Controller
                      $query->whereBetween('detail_reservations.Date_D', [$start, $end])
                            ->orWhereBetween('detail_reservations.Date_F', [$start, $end])
                            ->orWhere(function($query) use ($start, $end) {
-                               $query->where('detail_reservations.Date_D', '<', $start)
-                                     ->where('detail_reservations.Date_F', '>', $end);
+                               $query->where('detail_reservations.Date_D', '<=', $start)
+                                     ->where('detail_reservations.Date_F', '>=', $end);
                            });
                  });
         })
         ->whereNull('detail_reservations.produit_id') // Ensures that the product is not booked
         ->where("PR_PERSONNE",">=",$personne)
         ->get('*'); // Return relevant product fields
-
-    return response()->json($availableProducts);
-
+        return view('recherche', compact('availableProducts'));
 
 
     }

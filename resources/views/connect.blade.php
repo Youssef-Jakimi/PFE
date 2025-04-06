@@ -20,7 +20,7 @@
             <form class="login-form" action="{{ route('ajouter.login') }}" method="post">
                 @csrf
                 <div class="form-group">
-                    <input type="text" name="CIN" placeholder="CIN" class="form-input" required>
+                    <input type="text" name="CIN" placeholder="Identifiant" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" placeholder="Mot de passe" class="form-input" required>

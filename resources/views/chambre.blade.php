@@ -18,8 +18,7 @@
     <header class="desktop-nav">
         <div class="top-bar">
             <div class="languages">
-                <a href="#" class="active">FR</a>
-                <a href="#">EN</a>
+                <a class="active">FR</a>
             </div>
             <div class="contact-info">
                 <a href="tel:+212 614-879517"><i class="fas fa-phone"></i> +212 614 87 95 17</a>
@@ -36,10 +35,10 @@
                 <div class="nav-dropdown">
                     <a href="{{ route('chambre') }}">Chambres & Suites</a>
                     <div class="dropdown-content">
-                        <a href="#">Suite Présidentielle</a>
-                        <a href="#">Suite Royale</a>
-                        <a href="#">Chambre Deluxe</a>
-                        <a href="#">Chambre Standard</a>
+                        <a href="/chambre">Suite Présidentielle</a>
+                        <a href="/chambre">Suite Royale</a>
+                        <a href="/chambre">Chambre Deluxe</a>
+                        <a href="/chambre">Chambre Standard</a>
                     </div>
                 </div>
                 <div class="nav-dropdown">
@@ -58,7 +57,6 @@
                         <a href="{{ route('spa') }}">Piscine & Jacuzzi</a>
                     </div>
                 </div>
-                <a href="#">Destinations</a>
                 <a href="{{ route('contact') }}">Contact</a>
             </div>
             <div class="nav-actions">
@@ -79,6 +77,69 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button id="sidebarToggle" class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+            <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Accueil</a>
+            <div class="services-dropdown">
+                <a href="/chambre" id="roomsLink">Chambres & Suites</a>
+                <div id="roomsSubMenu" class="sub-menu">
+                    <a href="{{ route('chambre') }}">Toutes nos chambres</a>
+                    <a href="/chambre">Suite Présidentielle</a>
+                    <a href="/chambre">Suite Royale</a>
+                    <a href="/chambre">Chambre Deluxe</a>
+                </div>
+            </div>
+            <div class="services-dropdown">
+                <a href="/tabl" id="diningLink">Gastronomie</a>
+                <div id="diningSubMenu" class="sub-menu">
+                    <a href="{{ route('tabl') }}">Restaurants</a>
+                    <a href="/tabl">Lounge & Bar</a>
+                    <a href="/tabl">Service en chambre</a>
+                </div>
+            </div>
+            <div class="services-dropdown">
+                <a href="/spa" id="spaLink">Spa & Bien-être</a>
+                <div id="spaSubMenu" class="sub-menu">
+                    <a href="{{ route('spa') }}">Spa</a>
+                    <a href="/spa">Massages</a>
+                    <a href="/spa">Piscine & Jacuzzi</a>
+                </div>
+            </div>
+            <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+
+            <a href="{{ route('contact') }}">Contact</a>
+            @if (Auth::check())
+                <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+            @endif
+        </div>
+        <div class="sidebar-footer">
+            <div class="social-icons">
+                <a href="/"><i class="fab fa-facebook-f"></i></a>
+                <a href="/"><i class="fab fa-instagram"></i></a>
+                <a href="/"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
+        </div>
+    </nav>
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="container">
         <header class="header">
             <h1>Réservation de Chambres</h1>
@@ -111,178 +172,13 @@
                             <span>Salle de bain</span>
                         </div>
                     </div>
-                    <button class="btn" onclick="openBooking({{ $chambre->id }}, '{{ $chambre->PR_CODE }}', {{ $chambre->PR_PRIX }})">
-                        Réserver maintenant
-                    </button>
+                    <a href="/"><button class="btn" >Réserver maintenant</button></a>
+                        
                 </div>
             </div>
             @endforeach
         </div>
     </div>
 
-    <div class="modal" id="bookingModal">
-        <div class="modal-content">
-            <h2 id="modalTitle" style="margin-bottom: 1.5rem;">Réservation</h2>
-            <form id="bookingForm" action="{{ route('chambrePanier') }}" method="POST">
-                @csrf
-                <input type="hidden" name="produit_id" id="chambreId">
-                <input type="hidden" name="Prix_Total" id="prixTotal">
-                <input type="hidden" name="code_chambre" id="codeChambre">
-                <input type="hidden" name="duree" id="dureeInput">
-
-                <div class="form-group">
-                    <label for="dateD">Date d'arrivée</label>
-                    <input type="date" class="form-control" id="dateD" name="Date_D" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="dateF">Date de départ</label>
-                    <input type="date" class="form-control" id="dateF" name="Date_F" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Durée du séjour</label>
-                    <p id="stayDuration">-</p>
-                </div>
-
-                <div class="form-group">
-                    <label>Prix total</label>
-                    <p id="totalPrice">-</p>
-                </div>
-
-                <div class="button-group">
-                    <button type="submit" class="btn" id="submitButton">Confirmer</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeBooking()">Annuler</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Variable globale pour stocker l'ID de la chambre
-        let chambreIdGlobal = null;
-        let currentPrice = 0;
-        let chambreName = '';
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('dateD').min = today;
-            document.getElementById('dateF').min = today;
-
-            document.getElementById('dateD').addEventListener('change', updateDates);
-            document.getElementById('dateF').addEventListener('change', updateDates);
-
-            // Ajouter un gestionnaire d'événements pour le formulaire
-            document.getElementById('bookingForm').addEventListener('submit', function(event) {
-                // Vérifier que l'ID de la chambre est défini
-                if (!chambreIdGlobal) {
-                    event.preventDefault();
-                    alert('Erreur: ID de chambre non défini. Veuillez réessayer.');
-                    return false;
-                }
-
-                // S'assurer que le produit_id est correctement défini
-                document.getElementById('chambreId').value = chambreIdGlobal;
-
-                // S'assurer que le prix total est défini
-                const totalPrice = document.getElementById('totalPrice').textContent;
-                if (totalPrice === "-") {
-                    event.preventDefault();
-                    alert('Veuillez sélectionner des dates valides.');
-                    return false;
-                }
-
-                const prixNumerique = parseFloat(totalPrice.replace(' MAD', ''));
-                document.getElementById('prixTotal').value = prixNumerique;
-
-                // S'assurer que la durée est définie
-                const dureeTexte = document.getElementById('stayDuration').textContent;
-                if (dureeTexte === "-" || dureeTexte.includes("doit être après")) {
-                    event.preventDefault();
-                    alert('Veuillez sélectionner des dates valides.');
-                    return false;
-                }
-
-                const dureeNumerique = parseInt(dureeTexte.replace(' jour(s)', ''));
-                document.getElementById('dureeInput').value = dureeNumerique;
-
-                // Débogage - afficher les valeurs
-                console.log("Soumission du formulaire:");
-                console.log("produit_id:", document.getElementById('chambreId').value);
-                console.log("Prix_Total:", document.getElementById('prixTotal').value);
-                console.log("Date_D:", document.getElementById('dateD').value);
-                console.log("Date_F:", document.getElementById('dateF').value);
-            });
-        });
-
-        function openBooking(id, name, price) {
-            // Stocker l'ID de chambre dans la variable globale
-            chambreIdGlobal = id;
-            currentPrice = price;
-            chambreName = name;
-
-            // Assurer que l'ID est un nombre
-            if (typeof id !== 'number') {
-                id = parseInt(id, 10);
-                if (isNaN(id)) {
-                    console.error("ID de chambre invalide:", id);
-                    alert("Erreur: ID de chambre invalide");
-                    return;
-                }
-            }
-
-            // Définir explicitement les valeurs
-            document.getElementById('chambreId').value = id;
-            document.getElementById('codeChambre').value = name;
-            document.getElementById('modalTitle').textContent = `Réserver Chambre ${name}`;
-
-            // Ouvrir le modal
-            document.getElementById('bookingModal').classList.add('active');
-
-            // Réinitialiser le formulaire
-            document.getElementById('bookingForm').reset();
-
-            // Réinitialiser les champs cachés après reset
-            document.getElementById('chambreId').value = id;
-            document.getElementById('codeChambre').value = name;
-
-            // Mettre à jour l'affichage
-            updateDates();
-
-            // Vérification dans la console
-            console.log("openBooking appelé avec:", id, name, price);
-            console.log("chambreId actuel:", document.getElementById('chambreId').value);
-        }
-
-        function closeBooking() {
-            document.getElementById('bookingModal').classList.remove('active');
-        }
-
-        function updateDates() {
-            const dateD = document.getElementById('dateD').value;
-            const dateF = document.getElementById('dateF').value;
-
-            if (dateD && dateF) {
-                const startDate = new Date(dateD);
-                const endDate = new Date(dateF);
-
-                if (endDate >= startDate) {
-                    const diffTime = Math.abs(endDate - startDate);
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                    document.getElementById('stayDuration').textContent = `${diffDays} jour(s)`;
-                    document.getElementById('totalPrice').textContent = `${diffDays * currentPrice} MAD`;
-                    document.getElementById('prixTotal').value = diffDays * currentPrice;
-                    document.getElementById('dureeInput').value = diffDays;
-                } else {
-                    document.getElementById('stayDuration').textContent = "La date de départ doit être après la date d'arrivée";
-                    document.getElementById('totalPrice').textContent = "-";
-                }
-            } else {
-                document.getElementById('stayDuration').textContent = "-";
-                document.getElementById('totalPrice').textContent = "-";
-            }
-        }
-    </script>
 </body>
 </html>

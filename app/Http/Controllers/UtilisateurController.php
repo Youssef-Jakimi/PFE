@@ -27,7 +27,7 @@ class UtilisateurController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             
-                return redirect()->route('welcome')->with('success', 'Connexion aves success!');
+                return back()->with('success', 'Connexion aves success!');
             
         }
 
@@ -57,6 +57,6 @@ class UtilisateurController extends Controller
         session()->invalidate();
         auth::logout();
         //session()->regenerateToken();
-        return view('welcome');
+        return redirect('/');
     }        
 }

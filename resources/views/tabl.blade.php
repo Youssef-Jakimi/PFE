@@ -8,18 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header class="desktop-nav">
         <div class="top-bar">
             <div class="languages">
-                <a href="#" class="active">FR</a>
-                <a href="#">EN</a>
+                <a class="active">FR</a>
             </div>
             <div class="contact-info">
                 <a href="tel:+212 614-879517"><i class="fas fa-phone"></i> +212 614 87 95 17</a>
@@ -36,10 +30,10 @@
                 <div class="nav-dropdown">
                     <a href="{{ route('chambre') }}">Chambres & Suites</a>
                     <div class="dropdown-content">
-                        <a href="#">Suite Présidentielle</a>
-                        <a href="#">Suite Royale</a>
-                        <a href="#">Chambre Deluxe</a>
-                        <a href="#">Chambre Standard</a>
+                        <a href="/chambre">Suite Présidentielle</a>
+                        <a href="/chambre">Suite Royale</a>
+                        <a href="/chambre">Chambre Deluxe</a>
+                        <a href="/chambre">Chambre Standard</a>
                     </div>
                 </div>
                 <div class="nav-dropdown">
@@ -58,7 +52,6 @@
                         <a href="{{ route('spa') }}">Piscine & Jacuzzi</a>
                     </div>
                 </div>
-                <a href="#">Destinations</a>
                 <a href="{{ route('contact') }}">Contact</a>
             </div>
             <div class="nav-actions">
@@ -79,99 +72,85 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button id="sidebarToggle" class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+            <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Accueil</a>
+            <div class="services-dropdown">
+                <a href="/chambre" id="roomsLink">Chambres & Suites</a>
+                <div id="roomsSubMenu" class="sub-menu">
+                    <a href="{{ route('chambre') }}">Toutes nos chambres</a>
+                    <a href="/chambre">Suite Présidentielle</a>
+                    <a href="/chambre">Suite Royale</a>
+                    <a href="/chambre">Chambre Deluxe</a>
+                </div>
+            </div>
+            <div class="services-dropdown">
+                <a href="/tabl" id="diningLink">Gastronomie</a>
+                <div id="diningSubMenu" class="sub-menu">
+                    <a href="{{ route('tabl') }}">Restaurants</a>
+                    <a href="/tabl">Lounge & Bar</a>
+                    <a href="/tabl">Service en chambre</a>
+                </div>
+            </div>
+            <div class="services-dropdown">
+                <a href="/spa" id="spaLink">Spa & Bien-être</a>
+                <div id="spaSubMenu" class="sub-menu">
+                    <a href="{{ route('spa') }}">Spa</a>
+                    <a href="/spa">Massages</a>
+                    <a href="/spa">Piscine & Jacuzzi</a>
+                </div>
+            </div>
+            <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+
+            <a href="{{ route('contact') }}">Contact</a>
+            @if (Auth::check())
+                <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+            @endif
+        </div>
+        <div class="sidebar-footer">
+            <div class="social-icons">
+                <a href="/"><i class="fab fa-facebook-f"></i></a>
+                <a href="/"><i class="fab fa-instagram"></i></a>
+                <a href="/"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
+        </div>
+    </nav>
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="container">
         <h1>Réservation de Table</h1>
 
-
-
-        {{-- //affiche les tables dynamiquement  
         <div class="tables-items">
             @foreach($tables as $table)
                 <div class="cart-item">
                     <div>
+                        <img src="{{ asset('images/t' . $loop->iteration . '.jpg') }}" alt="Table" />
                         <div class="item-detail"><span>Produit:</span> {{ $table->PR_CODE }}</div>
-                        <div class="item-detail"><span>Capacité :</span> {{ $table->PR_PERSONNE }} personne</div>
+                        <div class="item-detail"><span>Capacité :</span> {{ $table->PR_PERSONNE }} personne(s)</div>
                         <div class="item-detail"><span>PRIX :</span> {{ $table->PR_PRIX }} MAD</div>
                     </div>
-                    
+                    <a href="/"><button class="btn" >Réserver maintenant</button></a>
                 </div>
             @endforeach
         </div>
---}}
-
-
-
-        <!-- Table 1 -->
-        <div class="table">
-            <img src="{{ asset('images/t1.jpg') }}" alt="Table rendez-vous">
-            <div class="table-info">
-                <h2>Table rendez-vous</h2>
-                <p>Table cosy pour deux avec vue sur la mer.</p>
-                <p class="capacity">Capacité : 2 personnes</p>
-                <button class="btn" onclick="openForm(1)">Réserver</button>
-            </div>
-        </div>
-
-        <!-- Table 2 -->
-        <div class="table">
-            <img src="{{ asset('images/t2.jpg') }}" alt="Table Familiale">
-            <div class="table-info">
-                <h2>Table Familiale</h2>
-                <p>Parfait pour les repas en famille.</p>
-                <p class="capacity">Capacité : 4-8 personnes</p>
-                <button class="btn" onclick="openForm(2)">Réserver</button>
-            </div>
-        </div>
-
-        <!-- Table 3 -->
-        <div class="table">
-            <img src="{{ asset('images/t3.jpg') }}" alt="Table VIP">
-            <div class="table-info">
-                <h2>Table VIP</h2>
-                <p>Privée avec service premium.</p>
-                <p class="capacity">Capacité : 4 personnes</p>
-                <button class="btn" onclick="openForm(3)">Réserver</button>
-            </div>
-        </div>
-
-        <a href="{{ route('menu') }}" class="menu-btn">Voir le Menu</a>
     </div>
-
-    <!-- Formulaire de réservation -->
-    <div class="overlay" id="overlay"></div>
-    <div class="form-popup" id="reservationForm">
-        <form action="{{ route('tablePanier') }}" method="post">
-            @csrf
-            <input type="number" name="produit" id="produit" hidden>
-            <input type="number" name="tableSPAProduit" value="4" hidden>
-            <input type="date" class="date" name="date" id="date" required>
-            <button type="submit" class="btn">Confirmer</button>
-            <button type="button" class="btn" onclick="closeForm()">Annuler</button>
-        </form>
-    </div>
-
-    <script>
-        function openForm(tableId) {
-            document.getElementById('produit').value = tableId;
-            document.getElementById('reservationForm').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
-
-        function closeForm() {
-            document.getElementById('reservationForm').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
-
-        document.getElementById('date').addEventListener('change', function() {
-            const selectedDate = new Date(this.value);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            if (selectedDate < today) {
-                alert('Veuillez sélectionner une date valide (non passée).');
-                this.value = '';
-            }
-        });
-    </script>
 </body>
 </html>

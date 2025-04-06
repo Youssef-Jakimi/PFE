@@ -53,7 +53,7 @@ class ProduitController extends Controller
         $panier = DB::table('paniers')
         ->join('produits', 'paniers.produit_id', '=', 'produits.id')
         ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
-        ->select('paniers.id as id ', 'categories.nom as name', 'produits.PR_CODE as ref', 'Prix_Total', 'Date_D', 'Date_F')
+        ->select('paniers.id as id', 'categories.nom as name', 'produits.PR_CODE as ref', 'Prix_Total', 'Date_D', 'Date_F')
         ->where("paniers.utilisateur_id","=",Auth::id())
         ->get();
 
@@ -61,9 +61,23 @@ class ProduitController extends Controller
         //$panier = panier::where('utilisateur_id', auth()->id())->get();  // Or whatever your query is
 
         $total = $panier->sum('Prix_Total');  // Example of calculating the total price
-        
         return view('panier', compact('panier', 'total'));
         }
+
+        public function deleteProduct(Request $request)
+        {
+            $id = $request->input('produit_id'); // Assuming you're sending the product ID in the request
+            $userID = Auth::id();
+            $panier = panier::where('utilisateur_id', $userID)->where('id', $id)->first();
+
+            if ($panier) {
+                $panier->delete();
+                return redirect('/panier')->with('success', 'Product removed from cart successfully.');
+            }
+
+            return response()->json(['success' => false, 'message' => 'Product not found or not in your cart.']);
+        }
+
 
     
 }

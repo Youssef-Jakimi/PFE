@@ -21,10 +21,10 @@
             </div>
 
             <nav class="mt-10">
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 bg-purple-700 text-white hover:bg-purple-500">
+                <a href="/" class="block py-2.5 px-4 rounded transition duration-200 bg-purple-700 text-white hover:bg-purple-500">
                     <i class="fas fa-home mr-2"></i>Dashboard
                 </a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
+                <a href="reservations" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
                     <i class="fas fa-calendar-alt mr-2"></i>Réservations
                 </a>
                 <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">

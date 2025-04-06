@@ -9,6 +9,7 @@
     <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 <body>
+    
 <div class="login-container">
     <div class="auth-box bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">S'inscrire</h1>
@@ -21,7 +22,7 @@
                 <input type="email" name="email" placeholder="Email" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
             </div>
             <div class="form-group mb-4">
-                <input type="text" name="CIN" placeholder="CIN" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                <input type="text" name="CIN" placeholder="Identifiant / CIN" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
             </div>
             <div class="form-group mb-4">
                 <input type="text" name="telephone" placeholder="Téléphone" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>

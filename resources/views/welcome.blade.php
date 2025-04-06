@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </head>
 <body>
@@ -18,8 +23,7 @@
     <header class="desktop-nav">
         <div class="top-bar">
             <div class="languages">
-                <a href="#" class="active">FR</a>
-                <a href="#">EN</a>
+                <a class="active">FR</a>
             </div>
             <div class="contact-info">
                 <a href="tel:+212 614-879517"><i class="fas fa-phone"></i> +212 614 87 95 17</a>
@@ -32,14 +36,14 @@
                 <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
             </div>
             <div class="nav-links">
-                <a href="#" class="active">Accueil</a>
+                <a href="/" class="active">Accueil</a>
                 <div class="nav-dropdown">
                     <a href="{{ route('chambre') }}">Chambres & Suites</a>
                     <div class="dropdown-content">
-                        <a href="#">Suite Présidentielle</a>
-                        <a href="#">Suite Royale</a>
-                        <a href="#">Chambre Deluxe</a>
-                        <a href="#">Chambre Standard</a>
+                        <a href="/chambre">Suite Présidentielle</a>
+                        <a href="/chambre">Suite Royale</a>
+                        <a href="/chambre">Chambre Deluxe</a>
+                        <a href="/chambre">Chambre Standard</a>
                     </div>
                 </div>
                 <div class="nav-dropdown">
@@ -58,7 +62,6 @@
                         <a href="{{ route('spa') }}">Piscine & Jacuzzi</a>
                     </div>
                 </div>
-                <a href="#">Destinations</a>
                 <a href="{{ route('contact') }}">Contact</a>
             </div>
             <div class="nav-actions">
@@ -94,31 +97,30 @@
         <div class="nav-links">
             <a href="#" class="active">Accueil</a>
             <div class="services-dropdown">
-                <a href="#" id="roomsLink">Chambres & Suites</a>
+                <a href="/chambre" id="roomsLink">Chambres & Suites</a>
                 <div id="roomsSubMenu" class="sub-menu">
                     <a href="{{ route('chambre') }}">Toutes nos chambres</a>
-                    <a href="#">Suite Présidentielle</a>
-                    <a href="#">Suite Royale</a>
-                    <a href="#">Chambre Deluxe</a>
+                    <a href="/chambre">Suite Présidentielle</a>
+                    <a href="/chambre">Suite Royale</a>
+                    <a href="/chambre">Chambre Deluxe</a>
                 </div>
             </div>
             <div class="services-dropdown">
-                <a href="#" id="diningLink">Gastronomie</a>
+                <a href="/tabl" id="diningLink">Gastronomie</a>
                 <div id="diningSubMenu" class="sub-menu">
                     <a href="{{ route('tabl') }}">Restaurants</a>
-                    <a href="#">Lounge & Bar</a>
-                    <a href="#">Service en chambre</a>
+                    <a href="/tabl">Lounge & Bar</a>
+                    <a href="/tabl">Service en chambre</a>
                 </div>
             </div>
             <div class="services-dropdown">
-                <a href="#" id="spaLink">Spa & Bien-être</a>
+                <a href="/spa" id="spaLink">Spa & Bien-être</a>
                 <div id="spaSubMenu" class="sub-menu">
                     <a href="{{ route('spa') }}">Spa</a>
-                    <a href="#">Massages</a>
-                    <a href="#">Piscine & Jacuzzi</a>
+                    <a href="/spa">Massages</a>
+                    <a href="/spa">Piscine & Jacuzzi</a>
                 </div>
             </div>
-            <a href="#">Destinations</a>
             <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
 
             <a href="{{ route('contact') }}">Contact</a>
@@ -130,9 +132,9 @@
         </div>
         <div class="sidebar-footer">
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="/"><i class="fab fa-facebook-f"></i></a>
+                <a href="/"><i class="fab fa-instagram"></i></a>
+                <a href="/"><i class="fab fa-twitter"></i></a>
             </div>
             <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
         </div>
@@ -172,8 +174,8 @@
                 </div>
                 <div class="slide">
                     <div class="overlay"></div>
-                    <div class="hero-content">
-                        <h1>Détente et Bien-être</h1><br><br><br><br><br><br>
+                    <div class="hero-content"><br><br><br><br><br><br>
+                        <h1>Détente et Bien-être</h1>
                         <p>Nos spas vous offrent un moment de relaxation ultime</p>
                         <div class="hero-buttons">
                             <a href="{{ route('spa') }}" class="btn btn-primary">Découvrir le spa</a>
@@ -194,24 +196,19 @@
         </section>
 
         <section class="booking-bar">
-            <form class="booking-form" method="POST" action="{{ route('recherche') }}"> @csrf
+            <form class="booking-form" method="POST" action="{{ route('recherche') }}"> 
+                @csrf
+                
+                <!-- Removed Destination Field -->
+                
                 <div class="form-group">
-                    <label for="destination">Destination</label>
-                    <select id="destination">
-                        <option value="">Choisir une destination</option>
-                        <option value="Fes">Fes</option>
-                        <option value="Marrakech">Marrakech</option>
-                        <option value="Tanger">Tanger</option>
-                    </select>
+                    <label for="dates">Arrivée et Départ</label>
+                    <input type="hidden" name="dateD" id="checkin" required>
+                    <input type="hidden" name="dateF" id="checkout" required>
+                    <input type="hidden" id="stayDurationInput" name="stayDuration" required>
+                    <input type="text" name="dates" id="dates" placeholder="Choisir vos dates" required>
                 </div>
-                <div class="form-group">
-                    <label for="checkin">Arrivée</label>
-                    <input type="date" name="dateD" id="checkin" required>
-                </div>
-                <div class="form-group">
-                    <label for="checkout">Départ</label>
-                    <input type="date" name="dateF" id="checkout" required>
-                </div>
+        
                 <div class="form-group">
                     <label for="guests">Voyageurs</label>
                     <div class="guests-select">
@@ -221,7 +218,7 @@
                             <option value="3">3 adultes</option>
                             <option value="4">4 adultes</option>
                         </select>
-                        <select name="enfant" id="children" >
+                        <select name="enfant" id="children">
                             <option value="0" selected>0 enfant</option>
                             <option value="1">1 enfant</option>
                             <option value="2">2 enfants</option>
@@ -229,6 +226,7 @@
                         </select>
                     </div>
                 </div>
+        
                 <button type="submit" class="btn-search">Vérifier la disponibilité</button>
             </form>
         </section>
@@ -651,6 +649,51 @@
 
             renderChat();
         });
+
+
+        
+        document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("#dates", {
+        mode: "range", // Enables date range mode
+        dateFormat: "d-m-Y", // Use the DD-MM-YYYY format
+        minDate: "today", // Disable past dates
+        locale: {
+            firstDayOfWeek: 1, // Set Monday as the first day of the week
+        },
+        onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates.length > 1) {
+                const checkinDate = selectedDates[0];
+                const checkoutDate = selectedDates[1];
+
+                // Format the dates in DD-MM-YYYY format
+                const formattedCheckinDate = checkinDate.toLocaleDateString('en-GB'); // 'en-GB' returns DD/MM/YYYY
+                const formattedCheckoutDate = checkoutDate.toLocaleDateString('en-GB');
+
+                // Set the check-in and check-out values in the hidden fields
+                document.getElementById('checkin').value = formattedCheckinDate.split('/').reverse().join('-'); // Convert to DD-MM-YYYY
+                document.getElementById('checkout').value = formattedCheckoutDate.split('/').reverse().join('-'); // Convert to DD-MM-YYYY
+
+                // Calculate the difference in days
+                const checkinDateObject = new Date(checkinDate);
+                const checkoutDateObject = new Date(checkoutDate);
+
+                // Get the difference in milliseconds, then convert to days
+                const diffTime = checkoutDateObject - checkinDateObject;
+                const diffDays = diffTime / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+
+                // Display the number of days
+                console.log('Number of days between the selected dates:', diffDays);
+
+                // Optional: You can display the number of days in the UI or send it in a hidden field
+                // Example: Add the number of days to a hidden input field
+                document.getElementById('stayDurationInput').value = diffDays;
+
+                // Update the display text for the date range
+                document.getElementById('dates').value = `${formattedCheckinDate} - ${formattedCheckoutDate}`;
+            }
+        }
+    });
+});
     </script>
 </body>
 </html>

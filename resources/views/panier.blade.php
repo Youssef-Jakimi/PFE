@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <title>Checkout</title>
     <style>
@@ -332,12 +336,19 @@
             }
         }
     </style>
+    
 </head>
 <body>
 
     <div class="container">
         <div class="cart-section">
             <h1>PANIER</h1>
+            @if(session('alert'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('alert') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            @endif
             @if($panier->count() == 0)
                 <div class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
@@ -349,20 +360,30 @@
                         <div class="cart-item">
                             <div>
                                 <div class="item-detail"><span>Produit:</span> {{ $produit->name }}</div>
-                                <div class="item-detail"><span>Référence:</span> {{ $produit->ref }}</div>
                                 <div class="item-detail"><span>Date début:</span> {{ $produit->Date_D }}</div>
+                                <div class="item-detail"><span>Date fin:</span> {{ $produit->Date_F }}</div>
+
                             </div>
                             <div>
-                                <div class="item-detail"><span>Date fin:</span> {{ $produit->Date_F }}</div>
+                                <div class="item-detail"><span>Référence:</span> {{ $produit->ref }}</div>
                                 <div class="item-price">{{ $produit->Prix_Total }} MAD</div>
+                                    <form action="{{ route('deleteProduct') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="produit_id" value="{{ $produit->id }}">
+                                        <button class="delete-product-btn" >
+                                            <i class="fas fa-trash"></i> Supprimer
+                                        </button>
+                                    </form>
                             </div>
                         </div>
                     @endforeach
+                    
                 </div>
 
                 <div class="cart-summary">
                     <h3>Total: {{$total}} MAD</h3>
                 </div>
+                
             @endif
         </div>
 
@@ -429,10 +450,16 @@
                     </button>
                 @endif
             </form>
+            <div class="auth-links mt-6 text-center">
+                <a href="/" class="text-orange-500 hover:text-orange-600 transition duration-300">Confirmer Plud Tard ? Retour Acceuill</a>
+            </div>
         </div>
+        
     </div>
 
     <script>
+
+
         document.addEventListener('DOMContentLoaded', function() {
             const cashPayment = document.getElementById('cash-payment');
             const cardPayment = document.getElementById('card-payment');

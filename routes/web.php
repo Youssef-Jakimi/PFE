@@ -96,6 +96,27 @@ use App\Http\Controllers\GPTController;
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
 
-
+Route::post('/reservation/search', [MenuController::class, 'recherche'])->name('reservation.search');
 
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/admin/reservations', [AdminDashboardController::class, 'reservations'])->name('admin.reservations');
+
+Route::post('/panier/delete', [ProduitController::class, 'deleteProduct'])->name('deleteProduct');
+
+
+
+
+
+Route::get('/admin/products', [AdminDashboardController::class, 'indexproduit'])->name('admin.products.index');
+Route::post('/admin/products', [AdminDashboardController::class, 'store'])->name('admin.products.store');
+Route::get('/admin/products/{productId}/reservations', [AdminDashboardController::class, 'getReservations']);
+
+
+
+Route::post('/admin/products/delete', [AdminDashboardController::class, 'deleteProduct'])->name('deleteproductadmin');
+
+
+
+
+
