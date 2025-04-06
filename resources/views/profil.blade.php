@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="YR HOTELS - Vivez une expérience de luxe inoubliable dans nos hôtels 5 étoiles présents dans le monde entier">
-        <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Laravel CSRF token -->
-        <title>YR HOTELS - Luxe & Élégance</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YR HOTELS - Vivez une expérience de luxe inoubliable dans nos hôtels 5 étoiles présents dans le monde entier">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Laravel CSRF token -->
+    <title>YR HOTELS - Luxe & Élégance</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/facture.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+</head>
 <body>
+    <!-- Header -->
     <header class="desktop-nav">
         <div class="top-bar">
             <div class="languages">
@@ -187,76 +194,56 @@
         {{ session('success') }}
     </div>
     @endif
-    <div class="facture-container">
-        <div class="invoice-header">
-            <div class="company-info">
 
-                <h4 style="color: var(--primary-color); margin-top: 10px;">YR-HOTELS</h4>
-                <p>contact@yr-hotels.com</p>
+    <main class="py-12 px-6 md:px-20 bg-gray-50">
+        <section class="bg-white p-8 rounded shadow-lg mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Détails du Profil</h2>
+            <div class="grid gap-4 text-lg">
+                <p><strong>Nom:</strong> {{ $user->nom }}</p>
+                <p><strong>Email:</strong> {{ $user->email }}</p>
+                <p><strong>Identifiant:</strong> {{ $user->CIN ?? 'Non renseigné' }}</p>
+                <p><strong>Téléphone:</strong> {{ $user->telephone ?? 'Non renseigné' }}</p>
+                <p><strong>Membre Depuis:</strong> {{ $user->created_at ?? 'Non renseigné' }}</p>
             </div>
-            <div class="invoice-info">
-                <h5 style="color: var(--secondary-color);">Facture #INV-{{ date('Ymd') }}</h5>
-                <p>Date: {{ date('d/m/Y') }}</p>
-                <p>Status: <span style="color: var(--primary-color); font-weight: 600;">Payée</span></p>
-            </div>
-        </div>
+        </section>
 
-        <h1>Facture de Réservation</h1>
-
-        <div class="table-responsive">
-            <table class="facture-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Réservation</th>
-                        <th>Produit</th>
-                        <th>Prix Total</th>
-                        <th>Date Début</th>
-                        <th>Date Fin</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($details as $detail)
-                        @if($detail->categorie == 'Chambre')
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td><input type="text" value="{{ $detail->reservation_id }}" readonly></td>
-                                <td><input type="text" value="{{ $detail->categorie }}" readonly></td>
-                                <td><input type="text" value="{{ number_format($detail->Prix_Total, 2, ',', ' ') }} MAD" readonly></td>
-                                <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_D)) }}" readonly></td>
-                                <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_F)) }}" readonly></td>
+        <section class="bg-white p-8 rounded shadow-lg">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Historique des Réservations</h2>
+            @if ($reservations->isEmpty())
+                <p class="text-gray-600">Aucune réservation trouvée.</p>
+            @else
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-100 text-left text-sm font-medium text-gray-700">
+                                <th class="px-4 py-3">Produit</th>
+                                <th class="px-4 py-3">Personnes</th>
+                                <th class="px-4 py-3">Prix Unitaire</th>
+                                <th class="px-4 py-3">Prix Total</th>
+                                <th class="px-4 py-3">DE</th>
+                                <th class="px-4 py-3">A</th>
                             </tr>
-                        @else
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td><input type="text" value="{{ $detail->reservation_id }}" readonly></td>
-                                <td><input type="text" value="{{ $detail->categorie }}" readonly></td>
-                                <td><input type="text" value="{{ number_format($detail->Prix_Total, 2, ',', ' ') }} MAD" readonly></td>
-                                <td><input type="text" value="{{ date('d/m/Y', strtotime($detail->Date_D)) }}" readonly></td>
-                            </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            @foreach ($reservations as $reservation)
+                                <tr>
+                                    <td class="px-4 py-3">{{ $reservation->PR_CODE }}</td>
+                                    <td class="px-4 py-3">{{ $reservation->PR_PERSONNE }} personnes</td>
+                                    <td class="px-4 py-3">{{ $reservation->PR_PRIX }} MAD</td>
+                                    <td class="px-4 py-3">{{ $reservation->Prix_Total }} MAD</td>
+                                    <td class="px-4 py-3">{{ \Carbon\Carbon::parse($reservation->Date_D)->format('d/m/Y') }}</td>
+                                    <td class="px-4 py-3">{{ \Carbon\Carbon::parse($reservation->Date_F)->format('d/m/Y') }}</td>
+                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        </section>
+        
+    </main>
 
-        <div style="text-align: right; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-            <p style="font-size: 1.1rem;"><strong>Montant Total:</strong>
-                <span style="color: var(--primary-color); font-weight: 600; font-size: 1.2rem;">
-                    {{ number_format($details->sum('Prix_Total'), 2, ',', ' ') }} MAD
-                </span>
-            </p>
-        </div>
-
-        <button class="btn-print" onclick="window.print()">
-            <i class="fas fa-print"></i> Imprimer la Facture
-        </button>
-
-        <div class="footer">
-            <p>Merci pour votre confiance! Pour toute question concernant cette facture, veuillez nous contacter.</p>
-            <p>&copy; {{ date('Y') }} YR-HOTELS - Tous droits réservés</p>
-        </div>
-    </div>
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -452,7 +439,5 @@
         });
 
     </script>
-</body>
-</html>
 </body>
 </html>

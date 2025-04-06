@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\produit;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -119,9 +120,12 @@ class AdminDashboardController extends Controller
 }
 
     
-//****************************************************** */
+//********************************************************************************************************** */
 public function indexproduit()
 {
+    if(auth()->user()->ADMIN != TRUE) {
+        return redirect()->route('welcome');
+    }
     // Fetch all products along with their categories
     $products = DB::table('produits')
         ->join('categories', 'produits.PR_CATEGORIE', '=', 'categories.id')
@@ -162,7 +166,9 @@ public function indexproduit()
         // Store a new product
         public function store(Request $request)
         {
-            
+            if(auth()->user()->ADMIN != TRUE) {
+                return redirect()->route('welcome');
+            }
 
             // Create the new product
             DB::table('produits')->insert([
@@ -178,6 +184,9 @@ public function indexproduit()
 
         public function deleteProduct(Request $request)
         {
+            if(auth()->user()->ADMIN != TRUE) {
+                return redirect()->route('welcome');
+            }
             $id = $request->input('id'); // Assuming you're sending the product ID in the request
             $produit = produit::where('id', $id)->first();
 
@@ -191,6 +200,9 @@ public function indexproduit()
 
         public function getProductReservations($productId)
             {
+                if(auth()->user()->ADMIN != TRUE) {
+                    return redirect()->route('welcome');
+                }
                 // Fetch reservation details for the given product
                 $reservations = DB::table('detail_reservations')
                     ->join('produits', 'detail_reservations.produit_id', '=', 'produits.id')
@@ -203,7 +215,64 @@ public function indexproduit()
 
         
 
+//********************************************************************************************************** */
+public function indexutilisateur()
+    {   
+        if(auth()->user()->ADMIN != TRUE) {
+            return redirect()->route('welcome');
+        }
+        // Get all users
+        $utilisateurs = Utilisateur::all();
 
+        // Get the number of users registered per month for the chart
+        $usersByMonth = Utilisateur::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                            ->groupBy('month')
+                            ->orderBy('month')
+                            ->get()
+                            ->pluck('count', 'month')
+                            ->toArray();
+
+        return view('admin.utilisateurs', [
+            'utilisateurs' => $utilisateurs,
+            'usersByMonth' => $usersByMonth
+        ]);
+    }
+
+    /**
+     * Store a new user in the database.
+     */
+    public function storeutilisateur(Request $request)
+    {        
+
+        if(auth()->user()->ADMIN != TRUE) {
+            return redirect()->route('welcome');
+        }
+        if($request->input('admin')== 'on'){
+            $admin=1;
+        }
+        else{
+            $admin=0;
+        }
+        // Validate the incoming data
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'CIN' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+            'telephone' => 'nullable|string|max:255',
+        ]);
+        $user = new Utilisateur();
+        $user->CIN = $request->input('CIN');
+        $user->nom = $request->input('nom');
+        $user->email = $request->input('email');
+        $user->telephone = $request->input('telephone');
+        $user->password = $request->input('password');
+        $user->ADMIN = $admin;  // Check if user is admin
+        $user->save();
+
+        return redirect('/admin/utilisateurs')->with('success', 'Utilisateur enregistré avec succès.');
+
+    }
     
 
 

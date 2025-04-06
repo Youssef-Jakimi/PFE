@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use session;
+use App\Models\Reservation;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use App\Models\detail_reservation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +19,8 @@ class UtilisateurController extends Controller
         else
         return view('welcome');
     }
+
+    
     /**
      * Méthode pour gérer la connexion d'un utilisateur.
      */
@@ -58,5 +63,21 @@ class UtilisateurController extends Controller
         auth::logout();
         //session()->regenerateToken();
         return redirect('/');
-    }        
+    }
+    
+    public function show()
+    {   
+        // Get the currently authenticated user
+        $user = Auth::user();
+        // Fetch user's reservations (with details) for the reservations history
+        $reservations = DB::table('detail_reservations')
+            ->join('reservations', 'detail_reservations.reservation_id', '=', 'reservations.id')
+            ->join('factures', 'reservations.facture', '=', 'factures.id')
+            ->join('produits', 'detail_reservations.produit_id', '=', 'produits.id')
+            ->where('reservations.utilisateur_id', $user->id)
+            ->orderBy('reservations.created_at', 'desc')
+            ->get();
+       
+        return view('profil', compact('user', 'reservations'));
+    }
 }

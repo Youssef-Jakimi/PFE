@@ -212,6 +212,7 @@ section {
 .btn-book {
     background-color: var(--primary-color);
     color: white;
+    margin-left: 20px;
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
     font-weight: 500;
@@ -1126,7 +1127,7 @@ footer {
     .newsletter-form input {
         padding: 1rem;
     }
-
+    
     .btn-subscribe {
         padding: 1rem;
     }
@@ -1145,6 +1146,7 @@ footer {
         margin: 0 0.75rem;
     }
 }
+
 /* Chat Bubble Styles */
 .chat-bubble {
     position: fixed;

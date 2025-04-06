@@ -6,15 +6,16 @@
     <meta name="description" content="YR HOTELS - Vivez une expérience de luxe inoubliable dans nos hôtels 5 étoiles présents dans le monde entier">
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Laravel CSRF token -->
     <title>YR HOTELS - Luxe & Élégance</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Include Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <!-- Include Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </head>
@@ -70,8 +71,27 @@
                     <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
                     <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
                     @else
-                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
-                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div x-data="{ isOpen: false }" class="relative">
+                            
+                            <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
+                                <span>Utilisateur, {{ Auth::user()->nom }}</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+    
+                            <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                                <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Profil</a>
+                                <a href="{{ route('panier') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <i class="fas fa-shopping-cart"></i>Panier</a>
+                                <a href="{{ route('disconnect') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                                
+                                
+                                </div>
+
+                        </div>
+                    </div>
                     <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                     @endif
                 @else
@@ -121,14 +141,40 @@
                     <a href="/spa">Piscine & Jacuzzi</a>
                 </div>
             </div>
-            <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
-
             <a href="{{ route('contact') }}">Contact</a>
             @if (Auth::check())
-                <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
-                <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-                <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
-            @endif
+                    @if (Auth::user()->ADMIN == TRUE)
+                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                    <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
+                    @else
+                    <div class="flex items-center space-x-4">
+                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div x-data="{ isOpen: false }" class="relative">
+                            
+                            <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
+                                <span>Utilisateur, {{ Auth::user()->nom }}</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+    
+                            <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                                <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Profil</a>
+                                <a href="{{ route('panier') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <i class="fas fa-shopping-cart"></i>Panier</a>
+                                <a href="{{ route('disconnect') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                                
+                                
+                                </div>
+
+                        </div>
+                    </div>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    @endif
+                @else
+                    <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                @endif
         </div>
         <div class="sidebar-footer">
             <div class="social-icons">

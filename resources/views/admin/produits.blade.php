@@ -44,29 +44,25 @@
         <!-- Sidebar -->
         <div :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}"
              class="bg-gradient-to-b from-purple-800 to-purple-600 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out z-10">
+
             <div class="flex items-center space-x-4 px-4">
                 <div class="font-extrabold text-2xl">AdminPanel</div>
             </div>
 
             <nav class="mt-10">
-                <a href="/" class="block py-2.5 px-4 rounded transition duration-200 bg-purple-700 text-white hover:bg-purple-500">
+                <a href="/admin/dashboard" class="block py-2.5 px-4 rounded transition duration-200  text-white hover:bg-purple-500">
                     <i class="fas fa-home mr-2"></i>Dashboard
                 </a>
-                <a href="reservations" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
+                <a href="/admin/reservations" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
                     <i class="fas fa-calendar-alt mr-2"></i>Réservations
                 </a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 bg-purple-700 text-white hover:bg-purple-500">
+                <a href="/admin/products" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700 bg-purple-700 ">
                     <i class="fas fa-box mr-2"></i>Produits
                 </a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
+                <a href="/admin/utilisateurs" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
                     <i class="fas fa-users mr-2"></i>Utilisateurs
                 </a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
-                    <i class="fas fa-file-invoice-dollar mr-2"></i>Factures
-                </a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
-                    <i class="fas fa-cog mr-2"></i>Paramètres
-                </a>
+                
             </nav>
         </div>
 
@@ -79,6 +75,23 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="ml-4 text-lg text-gray-700 font-medium">Produits</div>
+                </div>
+                <div class="flex items-center space-x-4">
+
+                    <div x-data="{ isOpen: false }" class="relative">
+                        <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
+
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span>Administrateur, {{ Auth::user()->nom }}</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+
+                        <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                            <a href="{{ route('disconnect') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                        </div>
+                    </div>
                 </div>
             </header>
 

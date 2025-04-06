@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GPTController;
 use App\Http\Controllers\SpaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MenuController;
@@ -10,8 +12,8 @@ use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
-use App\Http\Controllers\AdminDashboardController ;
-
+use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\ProfilController;
 
 
 Route::get('/', function () {
@@ -91,7 +93,8 @@ Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('c
 Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche');
 
 
-use App\Http\Controllers\GPTController;
+
+use App\Http\Controllers\AdminDashboardController ;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
 Route::post('/gpt-response', [GPTController::class, 'getResponse'])->name('gpt.response');
@@ -105,6 +108,8 @@ Route::get('/admin/reservations', [AdminDashboardController::class, 'reservation
 Route::post('/panier/delete', [ProduitController::class, 'deleteProduct'])->name('deleteProduct');
 
 
+Route::get('/profil', [UtilisateurController::class, 'show'])->name('profile');
+
 
 
 
@@ -112,9 +117,12 @@ Route::get('/admin/products', [AdminDashboardController::class, 'indexproduit'])
 Route::post('/admin/products', [AdminDashboardController::class, 'store'])->name('admin.products.store');
 Route::get('/admin/products/{productId}/reservations', [AdminDashboardController::class, 'getReservations']);
 
+Route::get('/admin/utilisateurs', [AdminDashboardController::class, 'indexutilisateur'])->name('admin.utilisateur.index');
+Route::post('/admin/utilisateurs', [AdminDashboardController::class, 'storeutilisateur'])->name('admin.utilisateur.store');
 
 
 Route::post('/admin/products/delete', [AdminDashboardController::class, 'deleteProduct'])->name('deleteproductadmin');
+
 
 
 
