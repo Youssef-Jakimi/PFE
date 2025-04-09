@@ -222,6 +222,7 @@
                                 <th class="px-4 py-3">Prix Total</th>
                                 <th class="px-4 py-3">DE</th>
                                 <th class="px-4 py-3">A</th>
+                                <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
@@ -234,6 +235,17 @@
                                     <td class="px-4 py-3">{{ \Carbon\Carbon::parse($reservation->Date_D)->format('d/m/Y') }}</td>
                                     <td class="px-4 py-3">{{ \Carbon\Carbon::parse($reservation->Date_F)->format('d/m/Y') }}</td>
                                     
+                                    @if($reservation->Date_D > now())
+                                        <td class="px-4 py-3">
+                                            <form action="{{ route('annuler') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="reservation" value="{{ $reservation->id }}">
+                                                <button class="delete-product-btn" >
+                                                    <i class="fas fa-trash"></i> Annuler Reservation
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

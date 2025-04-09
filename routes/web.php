@@ -110,7 +110,7 @@ Route::post('/panier/delete', [ProduitController::class, 'deleteProduct'])->name
 
 Route::get('/profil', [UtilisateurController::class, 'show'])->name('profile');
 
-
+Route::post('/profil', [UtilisateurController::class, 'delete'])->name('annuler');
 
 
 Route::get('/admin/products', [AdminDashboardController::class, 'indexproduit'])->name('admin.products.index');

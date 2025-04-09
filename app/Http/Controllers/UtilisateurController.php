@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use session;
+use App\Models\facture;
 use App\Models\Reservation;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
@@ -76,8 +77,30 @@ class UtilisateurController extends Controller
             ->join('produits', 'detail_reservations.produit_id', '=', 'produits.id')
             ->where('reservations.utilisateur_id', $user->id)
             ->orderBy('reservations.created_at', 'desc')
+            ->select('detail_reservations.id as id', 'produits.PR_CODE as PR_CODE','produits.PR_PERSONNE','produits.PR_PRIX' , 'detail_reservations.Prix_Total as Prix_Total', 'detail_reservations.Date_D', 'detail_reservations.Date_F')
             ->get();
-       
         return view('profil', compact('user', 'reservations'));
+    }
+
+    public function delete(Request $request){
+            $id = $request->input('reservation'); // Assuming you're sending the product ID in the request
+            $user = Auth::id();
+            $annulation = detail_reservation::where('id', $id)->first();
+            if ($annulation) {
+                $annulation->delete();
+            
+                // Get the facture ID based on the reservation ID
+                $facture = reservation::where('id', $annulation->reservation_id)->pluck('facture')->first();
+            
+                // Ensure $facture is not null before proceeding
+                if ($facture) {
+                    DB::table('factures')
+                        ->where('id', $facture)
+                        ->update(['Montant_Total' => DB::raw('Montant_Total - ' . $annulation->Prix_Total)]);
+                }
+            
+                return redirect('/profil')->with('success', 'Réservation annulée avec succès.');
+            }
+            
     }
 }
