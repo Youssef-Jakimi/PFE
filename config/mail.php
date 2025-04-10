@@ -107,7 +107,7 @@ return [
 
     'from' => [
     'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'), // **[MAYBE CHANGE]** Your preferred sender address
-    'name' => env('MAIL_FROM_NAME', 'Your Application'),       // **[MAYBE CHANGE]** Your preferred sender name
+    'name' => env('MAIL_FROM_NAME', 'YR-HOTELS SUPPORT'),       // **[MAYBE CHANGE]** Your preferred sender name
 ],
 
 ];
