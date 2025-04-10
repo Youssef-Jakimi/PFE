@@ -9,18 +9,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/recherche.css') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Include Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <!-- Include Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Custom Styles */
@@ -220,6 +216,7 @@
                     <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
                     <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
                     @else
+                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                     <div class="flex items-center space-x-4">
                         <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                             <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
@@ -241,7 +238,6 @@
 
                         </div>
                     </div>
-                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
                     @endif
                 @else
                     <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
@@ -613,7 +609,7 @@
             if (!@json(Auth::check())) {
                 alert('Veuillez vous connecter pour effectuer une réservation.');
                 window.location.href = '{{ route('index.connect') }}';
-                return;
+                return ;
             }
 
             if (confirm(`Êtes-vous sûr de vouloir réserver le produit ${prCode} du {{ request('dateD') }} au {{ request('dateF') }}?`)) {

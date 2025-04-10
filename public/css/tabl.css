@@ -27,6 +27,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
     padding: 3rem 2rem; /* Increased padding for breathing space */
 }
 

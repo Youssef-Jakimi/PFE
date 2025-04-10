@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
 </head>
-<body class="bg-gray-100">
-    <div x-data="{ sidebarOpen: true }" class="flex h-screen bg-gray-100">
+<body class="bg-gray-100" x-data="{ sidebarOpen: false }">
+    <div class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
         <div :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}"
              class="bg-gradient-to-b from-purple-800 to-purple-600 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out z-10">
@@ -20,7 +22,7 @@
             </div>
 
             <nav class="mt-10">
-                <a href="/admin/dashboard" class="block py-2.5 px-4 rounded transition duration-200  text-white hover:bg-purple-500">
+                <a href="/admin/dashboard" class="block py-2.5 px-4 rounded transition duration-200 text-white hover:bg-purple-500">
                     <i class="fas fa-home mr-2"></i>Dashboard
                 </a>
                 <a href="/admin/reservations" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700 bg-purple-700">
@@ -32,9 +34,13 @@
                 <a href="/admin/utilisateurs" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700">
                     <i class="fas fa-users mr-2"></i>Utilisateurs
                 </a>
-                
             </nav>
         </div>
+
+        <!-- Mobile Sidebar Toggle Button -->
+        <button @click="sidebarOpen = !sidebarOpen" class="sidebar-toggle md:hidden fixed top-5 left-5 bg-purple-600 text-white p-3 rounded-md shadow-lg">
+            <i class="fas fa-bars"></i>
+        </button>
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
@@ -47,10 +53,8 @@
                     <div class="ml-4 text-lg text-gray-700 font-medium">Réservations</div>
                 </div>
                 <div class="flex items-center space-x-4">
-
                     <div x-data="{ isOpen: false }" class="relative">
                         <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
-
                             <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                 <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                             </div>

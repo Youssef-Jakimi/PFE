@@ -33,7 +33,7 @@ class UtilisateurController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             
-                return back()->with('success', 'Connexion aves success!');
+                return redirect()->back()->with('success', 'Connexion aves success!');
             
         }
 

@@ -1,37 +1,36 @@
 <?php
-
-// app/Http/Controllers/ContactController.php
-
 namespace App\Http\Controllers;
 
-use App\Models\mail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    // Display the contact form
+    // Show the contact form
     public function index()
     {
         return view('contact');
     }
 
-    // Handle form submission (optional)
+    // Handle form submission and send email
     public function send(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
         ]);
-        $mail = new mail();
-        $mail->email=$request->input('email');
-        $mail->message=$request->input('message');
-        $mail->Utilisateur=Auth::id();
-        $mail->save();
 
+        // Send the email to you (the owner)
+        Mail::raw("New message from: {$validatedData['name']} ({$validatedData['email']})\n\n{$validatedData['message']}", function ($message) {
+            $message->to(env('MAIL_OWNER_EMAIL'))
+                    ->subject('Nouveau Message Du Support YR-HOTELS');
+        });
+
+        return redirect('/contact')->with('success', 'Your message has been sent!');
+    
         // Redirect back with a success message
-        return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
+        return back()->with('success', 'Message sent successfully!');
     }
 }
+

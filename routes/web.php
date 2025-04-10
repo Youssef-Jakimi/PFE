@@ -8,12 +8,13 @@ use App\Http\Controllers\SpaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TablController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
-use App\Http\Controllers\UtilisateurController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\CategorieController;
+use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
@@ -94,6 +95,7 @@ Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche
 
 
 
+use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\AdminDashboardController ;
 
 Route::get('/gpt-form', [GPTController::class, 'showForm'])->name('gpt.form');
@@ -122,9 +124,4 @@ Route::post('/admin/utilisateurs', [AdminDashboardController::class, 'storeutili
 
 
 Route::post('/admin/products/delete', [AdminDashboardController::class, 'deleteProduct'])->name('deleteproductadmin');
-
-
-
-
-
 
