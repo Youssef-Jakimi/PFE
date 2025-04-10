@@ -188,7 +188,7 @@
     </div>
     @endif
     <div class="container">
-        <header class="header">
+        <header class="header"><br><br><br>
             <h1>Réservation de Chambres</h1>
             <p>Découvrez nos chambres luxueuses et profitez d'un séjour inoubliable</p>
         </header>
