@@ -219,7 +219,7 @@
                             <span>Salle de bain</span>
                         </div>
                     </div>
-                    <a href="/"><button class="btn" >Réserver maintenant</button></a>
+                    <a href="{{route ('recherche.index')}}"><button class="btn" >Réserver maintenant</button></a>
                         
                 </div>
             </div>

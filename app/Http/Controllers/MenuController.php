@@ -11,16 +11,23 @@ class MenuController extends Controller
     {
         return view('menu');
     }
-
+    
     public function recherche(request $request){
+        //if he enters from product pages
+        if(!$request->input("dateD")){
+        $start = today()->addDay();
+        $end = today()->addDay();
+        $personne = 1;
+        }else{
+        //if he searchs
         $start = $request->input("dateD");
         $end = $request->input("dateF");
         $personne = $request->input("adulte") + $request->input("enfant");
-        
         $request->validate([
             'dateD' => ['required', 'date', 'after:today'],
         ]);
-
+        }
+    
     // Fetch available products (products that are not booked in the given period)
     $availableProducts = DB::table('produits')
         ->leftJoin('detail_reservations', function($join) use ($start, $end) {

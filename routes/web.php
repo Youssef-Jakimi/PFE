@@ -92,6 +92,7 @@ Route::get('/panier', [ProduitController::class, 'index'])->name('panier');
 Route::post('/panier', [ProduitController::class, 'confirmerCommande'])->name('confirmerCommande');
 
 Route::post('/recherche', [MenuController::class, 'recherche'])->name('recherche');
+Route::get('/recherche', [MenuController::class, 'recherche'])->name('recherche.index');
 
 
 

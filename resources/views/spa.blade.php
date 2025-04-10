@@ -203,7 +203,7 @@
                 <img src="{{ asset('images/s' . ($index + 1) . '.jpg') }}" alt="{{ $service['title'] }}">
                 <h3>{{ $service['title'] }}</h3>
                 <p>{{ $service['desc'] }}</p>
-                <a href="/" class="btn">Réserver</a>
+                <a href="{{route ('recherche.index')}}"><button class="btn" >Réserver</button></a>
             </div>
             @endforeach
         </div>
@@ -223,7 +223,7 @@
                 <img src="{{ asset('images/sp' . ($index + 1) . '.jpg') }}" alt="{{ $pack['title'] }}">
                 <h3>{{ $pack['title'] }}</h3>
                 <p>{{ $pack['desc'] }}</p>
-                <a href="/" class="btn">Réserver</a>
+                <a href="{{route ('recherche.index')}}"><button class="btn" >Réserver maintenant</button></a>
             </div>
             @endforeach
         </div>

@@ -196,7 +196,7 @@
                         <div class="item-detail"><span>Capacité :</span> {{ $table->PR_PERSONNE }} personne(s)</div>
                         <div class="item-detail"><span>PRIX :</span> {{ $table->PR_PRIX }} MAD</div>
                     </div>
-                    <a href="/"><button class="btn" >Réserver maintenant</button></a>
+                    <a href="{{route ('recherche.index')}}"><button class="btn" >Réserver maintenant</button></a>
                 </div>
             @endforeach
 

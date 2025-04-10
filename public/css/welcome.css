@@ -635,12 +635,13 @@ section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .card {
+    width: calc(25%);
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
@@ -1077,6 +1078,9 @@ footer {
     .destination-card {
         width: calc(50% - 1rem);
     }
+    .card {
+        width: calc(50% - 1rem);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1109,6 +1113,7 @@ footer {
     .destination-card {
         width: 100%;
     }
+    
 
     .destination-overlay {
         transform: translateY(0);
