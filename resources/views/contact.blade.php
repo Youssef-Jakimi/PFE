@@ -117,8 +117,9 @@
         </div>
         @endif
     </header>
-
-    <form action="{{ route('contact.send') }}" method="POST">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form action="{{ route('contact.send') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
