@@ -45,7 +45,12 @@ class UtilisateurController extends Controller
      */
     public function auth(Request $request)
     {
-       
+        $validatedData = $request->validate([
+            'nom' => 'required',
+            'email' => 'required|email',
+        ]);
+        
+        
         $user = new Utilisateur();
         $user->CIN = $request->input('CIN');
         $user->nom = $request->input('nom');

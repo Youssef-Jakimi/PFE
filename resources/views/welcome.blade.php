@@ -104,18 +104,28 @@
     </header>
 
     <!-- Mobile Sidebar Toggle -->
-    <button id="sidebarToggle" class="sidebar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
+    
 
     <!-- Mobile Sidebar -->
+    <!-- Mobile Header Bar -->
+    <header class="mobile-header">
+    <div class="mobile-header-container">
+        <button id="sidebarToggle" class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+        </div>
+        
+    </div>
+
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
             <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-links">
-            <a href="#" class="active">Accueil</a>
+            <a href="/" class="active">Accueil</a>
             <div class="services-dropdown">
                 <a href="/chambre" id="roomsLink">Chambres & Suites</a>
                 <div id="roomsSubMenu" class="sub-menu">
@@ -191,6 +201,7 @@
         {{ session('success') }}
     </div>
     @endif
+</header>
 
     <!-- Main Content -->
     <main class="main-content">

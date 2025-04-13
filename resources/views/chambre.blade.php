@@ -99,94 +99,102 @@
         </nav>
     </header>
 
-    <!-- Mobile Sidebar Toggle -->
-    <button id="sidebarToggle" class="sidebar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
     <!-- Mobile Sidebar -->
-    <nav id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
-            <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
+    <!-- Mobile Header Bar -->
+    <header class="mobile-header">
+        <div class="mobile-header-container">
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+            </div>
+            
         </div>
-        <div class="nav-links">
-            <a href="#" class="active">Accueil</a>
-            <div class="services-dropdown">
-                <a href="/chambre" id="roomsLink">Chambres & Suites</a>
-                <div id="roomsSubMenu" class="sub-menu">
-                    <a href="{{ route('chambre') }}">Toutes nos chambres</a>
-                    <a href="/chambre">Suite Présidentielle</a>
-                    <a href="/chambre">Suite Royale</a>
-                    <a href="/chambre">Chambre Deluxe</a>
-                </div>
-            </div>
-            <div class="services-dropdown">
-                <a href="/tabl" id="diningLink">Gastronomie</a>
-                <div id="diningSubMenu" class="sub-menu">
-                    <a href="{{ route('tabl') }}">Restaurants</a>
-                    <a href="/tabl">Lounge & Bar</a>
-                    <a href="/tabl">Service en chambre</a>
-                </div>
-            </div>
-            <div class="services-dropdown">
-                <a href="/spa" id="spaLink">Spa & Bien-être</a>
-                <div id="spaSubMenu" class="sub-menu">
-                    <a href="{{ route('spa') }}">Spa</a>
-                    <a href="/spa">Massages</a>
-                    <a href="/spa">Piscine & Jacuzzi</a>
-                </div>
-            </div>
-            <a href="{{ route('contact') }}">Contact</a>
-            @if (Auth::check())
-                    @if (Auth::user()->ADMIN == TRUE)
-                    <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
-                    <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
-                    @else
-                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
-                    <div class="flex items-center space-x-4">
-                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        </div>
-                        <div x-data="{ isOpen: false }" class="relative">
-                            
-                            <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
-                                <span>Utilisateur, {{ Auth::user()->nom }}</span>
-                                <i class="fas fa-chevron-down text-xs"></i>
-                            </button>
     
-                            <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                                <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Profil</a>
-                                <a href="{{ route('panier') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <i class="fas fa-shopping-cart"></i>Panier</a>
-                                <a href="{{ route('disconnect') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
-                                
-                                
-                                </div>
-
-                        </div>
-                    </div>
-                    @endif
-                @else
-                    <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
-                    <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
-                    <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
-                @endif
-        </div>
-        <div class="sidebar-footer">
-            <div class="social-icons">
-                <a href="/"><i class="fab fa-facebook-f"></i></a>
-                <a href="/"><i class="fab fa-instagram"></i></a>
-                <a href="/"><i class="fab fa-twitter"></i></a>
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ asset('images/logo.png') }}" alt="YR HOTELS">
+                <button id="closeBtn" class="close-btn"><i class="fas fa-times"></i></button>
             </div>
-            <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
+            <div class="nav-links">
+                <a href="/" class="active">Accueil</a>
+                <div class="services-dropdown">
+                    <a href="/chambre" id="roomsLink">Chambres & Suites</a>
+                    <div id="roomsSubMenu" class="sub-menu">
+                        <a href="{{ route('chambre') }}">Toutes nos chambres</a>
+                        <a href="/chambre">Suite Présidentielle</a>
+                        <a href="/chambre">Suite Royale</a>
+                        <a href="/chambre">Chambre Deluxe</a>
+                    </div>
+                </div>
+                <div class="services-dropdown">
+                    <a href="/tabl" id="diningLink">Gastronomie</a>
+                    <div id="diningSubMenu" class="sub-menu">
+                        <a href="{{ route('tabl') }}">Restaurants</a>
+                        <a href="/tabl">Lounge & Bar</a>
+                        <a href="/tabl">Service en chambre</a>
+                    </div>
+                </div>
+                <div class="services-dropdown">
+                    <a href="/spa" id="spaLink">Spa & Bien-être</a>
+                    <div id="spaSubMenu" class="sub-menu">
+                        <a href="{{ route('spa') }}">Spa</a>
+                        <a href="/spa">Massages</a>
+                        <a href="/spa">Piscine & Jacuzzi</a>
+                    </div>
+                </div>
+                <a href="{{ route('contact') }}">Contact</a>
+                @if (Auth::check())
+                        @if (Auth::user()->ADMIN == TRUE)
+                        <a href="{{ route('disconnect') }}" class="btn-login">Logout</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn-book">Admin</a>
+                        @else
+                        <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                        <div class="flex items-center space-x-4">
+                            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <div x-data="{ isOpen: false }" class="relative">
+                                
+                                <button @click="isOpen = !isOpen" class="flex items-center space-x-2 text-gray-700 focus:outline-none">
+                                    <span>Utilisateur, {{ Auth::user()->nom }}</span>
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </button>
+        
+                                <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                                    <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Profil</a>
+                                    <a href="{{ route('panier') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <i class="fas fa-shopping-cart"></i>Panier</a>
+                                    <a href="{{ route('disconnect') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                                    
+                                    
+                                    </div>
+    
+                            </div>
+                        </div>
+                        @endif
+                    @else
+                        <a href="{{ route('index.connect') }}" class="btn-login">Se connecter</a>
+                        <a href="{{ route('panier') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="{{ route('index.connect') }}" class="btn-book">Réserver</a>
+                    @endif
+            </div>
+            <div class="sidebar-footer">
+                <div class="social-icons">
+                    <a href="/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="/"><i class="fab fa-instagram"></i></a>
+                    <a href="/"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p><i class="fas fa-phone"></i> +212 614 87 95 17</p>
+            </div>
+        </nav>
+    
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    </nav>
-
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
+        @endif
+    </header>
     <div class="container">
         <header class="header"><br><br><br>
             <h1>Réservation de Chambres</h1>
