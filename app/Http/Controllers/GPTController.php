@@ -20,17 +20,19 @@ class GPTController extends Controller
     }
 
     // POST route to process user message and get GPT response
-    public function getResponse(Request $request)
-    {
-        // Get the user's message from the request
-        $userInput = $request->input('query');
+    // GPTController
+        public function getResponse(Request $request)
+        {
+            // Get the entire chat history from the request
+            $chatHistory = $request->input('chatHistory');
 
-        // Get GPT's response via the service class
-        $gptResponse = $this->gptService->generateResponse($userInput);
+            // Get GPT's response via the service class
+            $gptResponse = $this->gptService->generateResponse($chatHistory);
 
-        // Return response as JSON to send it back to the frontend
-        return response()->json(['response' => $gptResponse]);
-    }
+            // Return the response as JSON to send it back to the frontend
+            return response()->json(['response' => $gptResponse]);
+        }
+
 }
 
 

@@ -656,7 +656,7 @@
                 chatModal.classList.remove('active');
             });
 
-            async function sendMessageToBackend(userMessage) {
+            async function sendMessageToBackend() {
                 try {
                     const response = await fetch("{{ route('gpt.response') }}", {
                         method: 'POST',
@@ -664,7 +664,7 @@
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                         },
-                        body: JSON.stringify({ query: userMessage })
+                        body: JSON.stringify({ chatHistory })  // Send the entire chat history
                     });
 
                     if (!response.ok) {
@@ -677,6 +677,7 @@
                     return { response: "Désolé, je n’ai pas pu traiter votre demande. Veuillez réessayer." };
                 }
             }
+
 
             chatForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
@@ -695,7 +696,7 @@
                 chatContainer.appendChild(typingDiv);
                 chatContainer.scrollTop = chatContainer.scrollHeight;
 
-                const data = await sendMessageToBackend(userMessage);
+                const data = await sendMessageToBackend();
 
                 typingDiv.remove();
 
