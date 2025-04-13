@@ -7,34 +7,34 @@
             <!-- TailwindCSS -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        
+
             <!-- FontAwesome for icons -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
             <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
             <!-- jQuery (required for FullCalendar) -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
+
             <!-- Moment.js (required for FullCalendar) -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        
+
             <!-- FullCalendar CSS -->
             <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet">
-        
+
             <!-- FullCalendar JS -->
             <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
-        
+
             <!-- AlpineJS (optional, for interactive features) -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
     </head>
-    
+
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
     <div class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
         <div id="sidebar" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}"
             class="bg-gradient-to-b from-purple-800 to-purple-600 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out z-10">
             <div class="flex items-center space-x-4 px-4">
-                <div class="font-extrabold text-2xl">AdminPanel</div>
+                <div class="font-extrabold text-2xl">YR-HOTELS</div>
             </div>
 
             <nav class="mt-10">
@@ -160,7 +160,7 @@
                                         <button class="text-blue-500 hover:text-blue-700" onclick="toggleReservations({{ $product->id }})">
                                             <i class="fas fa-calendar-alt"></i> Voir Réservations
                                         </button>
-                                    
+
                                         <form action="{{ route('deleteproductadmin') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $product->id }}">
@@ -169,7 +169,7 @@
                                             </button>
                                         </form>
                                     </td>
-                                    
+
                                     <!-- Display Reservation Details in Calendar -->
                                     <tr id="reservations-row-{{ $product->id }}" class="bg-gray-100 hidden">
                                         <td colspan="6" class="p-4">
@@ -179,7 +179,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                  
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -235,7 +235,7 @@
             } else {
                 // Otherwise, show the row and initialize the calendar
                 row.style.display = "table-row";
-                
+
                 // Initialize FullCalendar only when needed
                 if (!calendarDiv.classList.contains('initialized')) {
                     initializeCalendar(productId);
