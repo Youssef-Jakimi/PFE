@@ -18,7 +18,7 @@
              class="bg-gradient-to-b from-purple-800 to-purple-600 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out z-10">
 
             <div class="flex items-center space-x-4 px-4">
-                <div class="font-extrabold text-2xl">AdminPanel</div>
+                <div class="font-extrabold text-2xl">YR-HOTELS</div>
             </div>
 
             <nav class="mt-10">
@@ -90,7 +90,7 @@
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-lg font-semibold">Liste des Réservations</h2>
                     </div>
-                
+
                     <div class="overflow-x-auto">
                         <table class="w-full table-auto">
                             <thead>
