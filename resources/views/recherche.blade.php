@@ -520,7 +520,7 @@
             productResults.innerHTML = '';
             filteredProducts.forEach(product => {
                 const productCard = document.createElement('div');
-                productCard.classList.add('card');
+                productCard.classList.add('cardP');
 
                 let imageSrc;
                 switch(product.PR_CATEGORIE) {
